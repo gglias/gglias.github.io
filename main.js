@@ -27,10 +27,16 @@
 
   function visual(p, eager) {
     if (p.image) {
-      return '<img' + (p.frame ? ' class="is-framed"' : "") + ' src="' + esc(p.image) + '" alt="' + esc(p.title) + ' cover"' + (eager ? "" : ' loading="lazy"') + " />";
+      var cls = p.fit === "logo" ? "is-logo" : p.frame ? "is-framed" : "";
+      return '<img' + (cls ? ' class="' + cls + '"' : "") + ' src="' + esc(p.image) + '" alt="' + esc(p.title) + (p.fit === "logo" ? " logo" : " cover") + '"' + (eager ? "" : ' loading="lazy"') + " />";
     }
     if (p.mock && MOCKS[p.mock]) return MOCKS[p.mock];
     return '<p class="m-empty">Add a screenshot:<br />image: "assets/your-project.jpg"</p>';
+  }
+
+  // Optional custom background for the image area (e.g. behind a logo)
+  function shotStyle(p) {
+    return p.bg ? ' style="background:' + esc(p.bg) + '"' : "";
   }
 
   // A project gets its own page when it has a slug and some detail sections.
@@ -87,7 +93,7 @@
   }
 
   // Shared with project.js
-  window.Site = { LABELS: LABELS, isLive: isLive, esc: esc, visual: visual, pageUrl: pageUrl, tintFramedCovers: tintFramedCovers };
+  window.Site = { LABELS: LABELS, isLive: isLive, esc: esc, visual: visual, shotStyle: shotStyle, pageUrl: pageUrl, tintFramedCovers: tintFramedCovers };
 
   // ---- Live W × H readouts, like Figma's size label ----
   function fmt(el) {
@@ -113,7 +119,7 @@
         '<article class="card' + (p.wide ? " is-wide" : "") + (p.draft ? " is-draft" : "") +
           '" data-category="' + esc(p.category) + '">' +
           '<div class="shot-wrap">' +
-            '<div class="shot" aria-hidden="' + (p.image ? "false" : "true") + '">' + visual(p) + "</div>" +
+            '<div class="shot" aria-hidden="' + (p.image ? "false" : "true") + '"' + shotStyle(p) + ">" + visual(p) + "</div>" +
             '<span class="shot-size" aria-hidden="true"></span>' +
           "</div>" +
           '<div class="card-meta">' +

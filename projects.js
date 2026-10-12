@@ -6,6 +6,8 @@
  * mock     : built-in illustration when there is no image: "website"
  * frame    : true = show the whole image as a framed screenshot on a
  *            gradient taken from its colours, instead of filling the card
+ * fit      : "logo" = show the image as a centred logo (no frame, no shadow)
+ * bg       : custom CSS background behind the image, e.g. a brand gradient
  * link     : the project's main external link (GitHub, live site, Figma)
  * wide     : true = card spans the full width
  * draft    : true = shown when you preview locally, hidden on github.io
@@ -26,8 +28,9 @@ window.PROJECTS = [
     summary:
       "The Smartup website, in English and Greek. Built on Elementor with WPML, self-hosted fonts and Cloudflare in front, plus a looping 3D hero made in Blender.",
     tags: ["Figma", "WordPress", "Elementor", "WPML", "Blender"],
-    mock: "website",
-    image: "",
+    image: "assets/smartup-logo.png",
+    fit: "logo",
+    bg: "radial-gradient(90% 80% at 0% 0%, rgba(70,233,212,0.45), transparent 70%), radial-gradient(90% 80% at 100% 100%, rgba(4,39,39,0.12), transparent 70%), linear-gradient(135deg, #effdfb, #e2f6f3)",
     link: "https://smartupweb.com",
     wide: true,
     actions: [{ label: "Visit smartupweb.com", href: "https://smartupweb.com", primary: true }],

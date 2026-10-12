@@ -58,7 +58,7 @@
       (actions.length ? '<div class="pj-actions">' + actions.map(action).join("") + "</div>" : "") +
     "</section>" +
 
-    '<div class="wrap"><div class="shot pj-cover">' + S.visual(p, true) + "</div></div>" +
+    '<div class="wrap"><div class="shot pj-cover"' + S.shotStyle(p) + ">" + S.visual(p, true) + "</div></div>" +
 
     '<div class="pj-body wrap">' +
       '<aside class="pj-facts" aria-label="At a glance">' +

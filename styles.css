@@ -850,6 +850,21 @@ body { padding-top: var(--header-h); }
 }
 .m-pill { display: inline-block; width: 64px; height: 18px; border-radius: 999px; background: var(--m-ink); margin-top: 6px; }
 
+/* Logo cover: the logo alone, centred on a brand-tinted background (set with `bg`) */
+.shot img.is-logo {
+  width: 40%;
+  max-width: 440px;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.5s var(--ease);
+}
+.card:hover .shot img.is-logo { transform: scale(1.03); }
+.shot.pj-cover img.is-logo { width: 38%; }
+@media (max-width: 680px) {
+  .shot img.is-logo,
+  .shot.pj-cover img.is-logo { width: 62%; }
+}
+
 /* Framed cover: whole image as a screenshot on the grey canvas */
 .shot img.is-framed {
   width: 86%;
