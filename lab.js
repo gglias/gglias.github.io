@@ -25,6 +25,7 @@
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var EASE = "cubic-bezier(0.45, 0, 0.2, 1)";
   var SPRING = "cubic-bezier(0.34, 1.56, 0.64, 1)";
+  var GX = 18, GY = 28;  // where the dragged widget sits relative to the cursor tip
 
   var run = 0;          // bumps on every restart; old loops notice and stop
   var visible = false;
@@ -51,7 +52,7 @@
     var a = cursor.animate([{ transform: tr(pos.x, pos.y) }, { transform: tr(x, y) }],
       { duration: ms, easing: EASE, fill: "forwards" });
     if (withGhost) {
-      ghost.animate([{ transform: tr(pos.x + 12, pos.y + 14) }, { transform: tr(x + 12, y + 14) }],
+      ghost.animate([{ transform: tr(pos.x + GX, pos.y + GY) }, { transform: tr(x + GX, y + GY) }],
         { duration: ms, easing: EASE, fill: "forwards" });
     }
     pos = { x: x, y: y };
@@ -106,7 +107,7 @@
           click();
           tile.classList.add("is-grab");
           ghost.textContent = tile.textContent.trim();
-          ghost.style.transform = tr(pos.x + 12, pos.y + 14);
+          ghost.style.transform = tr(pos.x + GX, pos.y + GY);
           fade(ghost, 0, 1, 120);
           await wait(140, id);
 

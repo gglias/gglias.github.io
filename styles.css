@@ -22,6 +22,8 @@
 *::after { box-sizing: border-box; }
 
 html {
+  /* Large macOS-style arrow (links and buttons keep the normal hand) */
+  cursor: url("assets/cursor.svg") 2 2, auto;
   scroll-behavior: smooth;
   scroll-padding-top: 90px; /* keep section titles clear of the sticky header */
   -webkit-text-size-adjust: 100%;
@@ -570,11 +572,13 @@ body { padding-top: var(--header-h); }
   left: 0;
   top: 0;
   z-index: 5;
-  width: 16px;
-  height: 20px;
+  width: 26px;                                 /* same size as the real cursor */
+  height: 32px;
+  transform-origin: 2px 2px;                   /* clicks shrink towards the tip */
+  overflow: visible;
   opacity: 0;
   pointer-events: none;
-  filter: drop-shadow(0 1px 1px rgb(0 0 0 / 0.25));
+  filter: drop-shadow(0 1px 1.2px rgb(0 0 0 / 0.35));
 }
 
 .el-ghost {
