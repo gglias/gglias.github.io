@@ -102,21 +102,67 @@ body { padding-top: var(--header-h); }
   border-bottom-color: var(--hair);
 }
 
+/* Logo: full "Greg Glias" at the top, "GG" monogram once scrolled.
+   The full logo is wiped in/out with a soft gradient mask, like handwriting. */
 .brand {
+  position: relative;
   display: block;
-  line-height: 0;
-  transition: opacity 0.2s;
-}
-/* Scale with transform (GPU) instead of animating height (repaints the SVG every frame) */
-.brand img {
+  width: 69px;
   height: 78px;
-  width: auto;
-  transform-origin: left center;
-  transition: transform 0.3s var(--ease);
-  will-change: transform;
+  transition: height 0.3s var(--ease), opacity 0.2s;
 }
-.top.is-scrolled .brand img { transform: scale(0.667); }
+.top.is-scrolled .brand { height: 44px; }
 .brand:hover { opacity: 0.65; }
+
+.brand img {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: auto;
+}
+
+.brand-full {
+  height: 78px;
+  transform: translateY(-50%);
+  -webkit-mask-image: linear-gradient(100deg, #000 40%, transparent 60%);
+  mask-image: linear-gradient(100deg, #000 40%, transparent 60%);
+  -webkit-mask-size: 300% 100%;
+  mask-size: 300% 100%;
+  -webkit-mask-position: 0% 0;
+  mask-position: 0% 0;
+  /* writing back in: wait for the GG to leave, then reveal left → right */
+  transition:
+    -webkit-mask-position 0.75s cubic-bezier(0.45, 0, 0.2, 1) 0.12s,
+    mask-position 0.75s cubic-bezier(0.45, 0, 0.2, 1) 0.12s;
+}
+.top.is-scrolled .brand-full {
+  -webkit-mask-position: 100% 0;
+  mask-position: 100% 0;
+  /* erasing: quicker, no delay */
+  transition:
+    -webkit-mask-position 0.45s cubic-bezier(0.4, 0, 0.6, 1),
+    mask-position 0.45s cubic-bezier(0.4, 0, 0.6, 1);
+  pointer-events: none;
+}
+
+.brand-mono {
+  height: 40px;
+  opacity: 0;
+  transform: translateY(-50%) scale(0.8);
+  filter: blur(4px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.25s ease, filter 0.2s ease;
+}
+.top.is-scrolled .brand-mono {
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+  filter: blur(0);
+  pointer-events: auto;
+  transition:
+    opacity 0.35s ease 0.2s,
+    transform 0.5s cubic-bezier(0.34, 1.4, 0.64, 1) 0.2s,
+    filter 0.35s ease 0.2s;
+}
 
 .nav { display: flex; gap: clamp(14px, 3vw, 32px); }
 
