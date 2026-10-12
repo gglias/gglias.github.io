@@ -7,58 +7,6 @@
   var isLive = /\.github\.io$/.test(location.hostname);
 
   var MOCKS = {
-    banner:
-      '<div class="m m-browser">' +
-        '<div class="m-bar"><i></i><i></i><i></i></div>' +
-        '<div class="m-page">' +
-          '<b class="m-line dark w55"></b><b class="m-line w80"></b><b class="m-line w70"></b><b class="m-line w40"></b>' +
-          '<div class="m-banner"><span class="m-dot"></span>Open late on Fridays<span class="m-lang">EN · EL</span></div>' +
-        "</div>" +
-      "</div>",
-
-    inquiry:
-      '<div class="m m-browser">' +
-        '<div class="m-bar"><i></i><i></i><i></i></div>' +
-        '<div class="m-page dim">' +
-          '<b class="m-line dark w55"></b><b class="m-line w80"></b><b class="m-line w70"></b><b class="m-line w60"></b><b class="m-line w40"></b>' +
-          '<div class="m-modal">' +
-            "<strong>Tell us about your project</strong>" +
-            '<div class="m-field"></div><div class="m-field"></div><div class="m-field tall"></div>' +
-            '<div class="m-row"><span class="m-pdf">brief.pdf</span><span class="m-btn">Send</span></div>' +
-          "</div>" +
-        "</div>" +
-      "</div>",
-
-    consent:
-      '<div class="m m-browser">' +
-        '<div class="m-bar"><i></i><i></i><i></i></div>' +
-        '<div class="m-page">' +
-          '<b class="m-line dark w60"></b><b class="m-line w90"></b><b class="m-line w70"></b>' +
-          '<div class="m-cookie">' +
-            "<strong>We use cookies</strong>" +
-            '<div class="m-toggles"><span class="m-toggle on">Necessary</span><span class="m-toggle">Analytics</span><span class="m-toggle">Marketing</span></div>' +
-            '<div class="m-actions"><span class="m-btn ghost">Reject</span><span class="m-btn">Accept</span></div>' +
-          "</div>" +
-        "</div>" +
-      "</div>",
-
-    booking: (function () {
-      var cells = "";
-      for (var i = 0; i < 35; i++) {
-        var cls = i < 3 ? "off" : i === 17 ? "sel" : "";
-        cells += '<span class="' + cls + '"></span>';
-      }
-      return (
-        '<div class="m m-browser">' +
-          '<div class="m-bar"><i></i><i></i><i></i></div>' +
-          '<div class="m-booking">' +
-            '<div><div class="m-cal-head">October</div><div class="m-cal">' + cells + "</div></div>" +
-            '<div class="m-slots"><span class="m-slot">10:00</span><span class="m-slot sel">11:30</span><span class="m-slot">14:00</span><span class="m-slot">16:30</span></div>' +
-          "</div>" +
-        "</div>"
-      );
-    })(),
-
     website:
       '<div class="m m-site m-browser">' +
         '<div class="m-bar"><i></i><i></i><i></i><span class="m-url">smartupweb.com</span></div>' +
@@ -77,47 +25,18 @@
     });
   }
 
-  function visual(p) {
+  function visual(p, eager) {
     if (p.image) {
-      return '<img' + (p.frame ? ' class="is-framed"' : "") + ' src="' + esc(p.image) + '" alt="' + esc(p.title) + ' cover" loading="lazy" />';
+      return '<img' + (p.frame ? ' class="is-framed"' : "") + ' src="' + esc(p.image) + '" alt="' + esc(p.title) + ' cover"' + (eager ? "" : ' loading="lazy"') + " />";
     }
     if (p.mock && MOCKS[p.mock]) return MOCKS[p.mock];
     return '<p class="m-empty">Add a screenshot:<br />image: "assets/your-project.jpg"</p>';
   }
 
-  function card(p) {
-    var title = p.link
-      ? '<a href="' + esc(p.link) + '" target="_blank" rel="noopener">' + esc(p.title) + "</a>"
-      : esc(p.title);
-
-    var tags = (p.tags || []).map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("");
-
-    return (
-      '<article class="card' + (p.wide ? " is-wide" : "") + (p.draft ? " is-draft" : "") +
-        '" data-category="' + esc(p.category) + '">' +
-        '<div class="shot-wrap">' +
-          '<div class="shot" aria-hidden="' + (p.image ? "false" : "true") + '">' + visual(p) + "</div>" +
-          '<span class="shot-size" aria-hidden="true"></span>' +
-        "</div>" +
-        '<div class="card-meta">' +
-          "<span>" + esc(LABELS[p.category] || p.category) + "</span><span>·</span>" +
-          "<span>" + esc(p.year) + "</span><span>·</span>" +
-          "<span>" + esc(p.role) + "</span>" +
-          (p.draft ? '<span class="draft-badge">Draft — hidden on the live site</span>' : "") +
-        "</div>" +
-        '<h3 class="card-title">' + title + "</h3>" +
-        '<p class="card-summary">' + esc(p.summary) + "</p>" +
-        (tags ? '<ul class="tags" aria-label="Tools">' + tags + "</ul>" : "") +
-      "</article>"
-    );
+  // A project gets its own page when it has a slug and some detail sections.
+  function pageUrl(p) {
+    return p.slug && p.sections && p.sections.length ? "project.html?p=" + encodeURIComponent(p.slug) : "";
   }
-
-  // ---- Render projects ----
-  var grid = document.querySelector("[data-grid]");
-  var empty = document.querySelector("[data-empty]");
-  var projects = (window.PROJECTS || []).filter(function (p) { return !(isLive && p.draft); });
-  grid.innerHTML = projects.map(card).join("");
-  var cards = Array.prototype.slice.call(grid.querySelectorAll(".card"));
 
   // ---- Framed covers: tint the empty space around them with the image's own colours ----
   function coverGradient(img) {
@@ -160,10 +79,15 @@
     }
   }
 
-  grid.querySelectorAll("img.is-framed").forEach(function (img) {
-    if (img.complete && img.naturalWidth) coverGradient(img);
-    else img.addEventListener("load", function () { coverGradient(img); });
-  });
+  function tintFramedCovers(scope) {
+    scope.querySelectorAll("img.is-framed").forEach(function (img) {
+      if (img.complete && img.naturalWidth) coverGradient(img);
+      else img.addEventListener("load", function () { coverGradient(img); });
+    });
+  }
+
+  // Shared with project.js
+  window.Site = { LABELS: LABELS, isLive: isLive, esc: esc, visual: visual, pageUrl: pageUrl, tintFramedCovers: tintFramedCovers };
 
   // ---- Live W × H readouts, like Figma's size label ----
   function fmt(el) {
@@ -171,75 +95,128 @@
     return Math.round(r.width) + " × " + Math.round(r.height);
   }
 
-  var heroFrame = document.querySelector("[data-frame]");
-  var heroSize = document.querySelector("[data-size]");
-  var sized = [[heroFrame, heroSize]];
-  cards.forEach(function (c) { sized.push([c.querySelector(".shot"), c.querySelector(".shot-size")]); });
+  // =====================================================================
+  // Home page only
+  // =====================================================================
+  var grid = document.querySelector("[data-grid]");
+  if (grid) {
+    var card = function (p) {
+      var href = pageUrl(p) || p.link || "";
+      var external = !pageUrl(p) && p.link;
+      var title = href
+        ? '<a href="' + esc(href) + '"' + (external ? ' target="_blank" rel="noopener"' : "") + ">" + esc(p.title) + "</a>"
+        : esc(p.title);
 
-  var frameLabel = document.querySelector(".frame-label");
+      var tags = (p.tags || []).map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("");
 
-  function updateSizes() {
-    sized.forEach(function (pair) { pair[1].textContent = fmt(pair[0]); });
-    var w = window.innerWidth;
-    frameLabel.textContent = "Hero / " + (w < 680 ? "Mobile" : w < 1024 ? "Tablet" : "Desktop");
-  }
-  updateSizes();
-  if ("ResizeObserver" in window) {
-    var ro = new ResizeObserver(updateSizes);
-    sized.forEach(function (pair) { ro.observe(pair[0]); });
-  } else {
-    window.addEventListener("resize", updateSizes);
-  }
+      return (
+        '<article class="card' + (p.wide ? " is-wide" : "") + (p.draft ? " is-draft" : "") +
+          '" data-category="' + esc(p.category) + '">' +
+          '<div class="shot-wrap">' +
+            '<div class="shot" aria-hidden="' + (p.image ? "false" : "true") + '">' + visual(p) + "</div>" +
+            '<span class="shot-size" aria-hidden="true"></span>' +
+          "</div>" +
+          '<div class="card-meta">' +
+            "<span>" + esc(LABELS[p.category] || p.category) + "</span><span>·</span>" +
+            "<span>" + esc(p.year) + "</span><span>·</span>" +
+            "<span>" + esc(p.role) + "</span>" +
+            (p.draft ? '<span class="draft-badge">Draft — hidden on the live site</span>' : "") +
+          "</div>" +
+          '<h3 class="card-title">' + title + "</h3>" +
+          '<p class="card-summary">' + esc(p.summary) + "</p>" +
+          (tags ? '<ul class="tags" aria-label="Tools">' + tags + "</ul>" : "") +
+        "</article>"
+      );
+    };
 
-  // ---- Filters ----
-  var chips = Array.prototype.slice.call(document.querySelectorAll("[data-filter]"));
-  chips.forEach(function (chip) {
-    chip.addEventListener("click", function () {
-      var f = chip.getAttribute("data-filter");
-      chips.forEach(function (c) { c.setAttribute("aria-pressed", String(c === chip)); });
-      var shown = 0;
-      cards.forEach(function (c) {
-        var match = f === "all" || c.getAttribute("data-category") === f;
-        c.hidden = !match;
-        if (match) { shown++; c.classList.add("is-in"); }
-        // In a filtered view nothing should span the full row on its own.
-        c.classList.toggle("is-wide", match && f === "all" && c.dataset.wide === "1");
+    var empty = document.querySelector("[data-empty]");
+    var projects = (window.PROJECTS || []).filter(function (p) { return !(isLive && p.draft); });
+    grid.innerHTML = projects.map(card).join("");
+    var cards = Array.prototype.slice.call(grid.querySelectorAll(".card"));
+    tintFramedCovers(grid);
+
+    var heroFrame = document.querySelector("[data-frame]");
+    var heroSize = document.querySelector("[data-size]");
+    var frameLabel = document.querySelector(".frame-label");
+    var sized = heroFrame ? [[heroFrame, heroSize]] : [];
+    cards.forEach(function (c) { sized.push([c.querySelector(".shot"), c.querySelector(".shot-size")]); });
+
+    var updateSizes = function () {
+      sized.forEach(function (pair) { pair[1].textContent = fmt(pair[0]); });
+      if (frameLabel) {
+        var w = window.innerWidth;
+        frameLabel.textContent = "Hero / " + (w < 680 ? "Mobile" : w < 1024 ? "Tablet" : "Desktop");
+      }
+    };
+    updateSizes();
+    if ("ResizeObserver" in window) {
+      var ro = new ResizeObserver(updateSizes);
+      sized.forEach(function (pair) { ro.observe(pair[0]); });
+    } else {
+      window.addEventListener("resize", updateSizes);
+    }
+
+    // Filters
+    var chips = Array.prototype.slice.call(document.querySelectorAll("[data-filter]"));
+    cards.forEach(function (c, i) { if (projects[i].wide) c.dataset.wide = "1"; });
+    chips.forEach(function (chip) {
+      chip.addEventListener("click", function () {
+        var f = chip.getAttribute("data-filter");
+        chips.forEach(function (c) { c.setAttribute("aria-pressed", String(c === chip)); });
+        var shown = 0;
+        cards.forEach(function (c) {
+          var match = f === "all" || c.getAttribute("data-category") === f;
+          c.hidden = !match;
+          if (match) { shown++; c.classList.add("is-in"); }
+          // In a filtered view nothing should span the full row on its own.
+          c.classList.toggle("is-wide", match && f === "all" && c.dataset.wide === "1");
+        });
+        empty.hidden = shown > 0;
+        updateSizes();
       });
-      empty.hidden = shown > 0;
-      updateSizes();
     });
-  });
-  cards.forEach(function (c, i) { if (projects[i].wide) c.dataset.wide = "1"; });
+  }
+
+  // =====================================================================
+  // Every page
+  // =====================================================================
 
   // ---- Reveal on scroll ----
-  var revealables = Array.prototype.slice.call(document.querySelectorAll(".reveal")).concat(cards);
-  if ("IntersectionObserver" in window) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); }
-      });
-    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
-    revealables.forEach(function (el) { io.observe(el); });
-  } else {
-    revealables.forEach(function (el) { el.classList.add("is-in"); });
-  }
+  window.Site.reveal = function () {
+    var revealables = Array.prototype.slice.call(document.querySelectorAll(".reveal, .card")).filter(function (el) {
+      return !el.classList.contains("is-in");
+    });
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); }
+        });
+      }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+      revealables.forEach(function (el) { io.observe(el); });
+    } else {
+      revealables.forEach(function (el) { el.classList.add("is-in"); });
+    }
+  };
+  window.Site.reveal();
 
   // ---- Compact header once the page is scrolled ----
   // Two thresholds so it can't flip back and forth around a single point.
   var header = document.querySelector("[data-header]");
-  var compact = false;
-  var ticking = false;
-  function applyHeader() {
-    ticking = false;
-    var y = window.scrollY;
-    if (!compact && y > 40) compact = true;
-    else if (compact && y < 8) compact = false;
-    header.classList.toggle("is-scrolled", compact);
+  if (header) {
+    var compact = false;
+    var ticking = false;
+    var applyHeader = function () {
+      ticking = false;
+      var y = window.scrollY;
+      if (!compact && y > 40) compact = true;
+      else if (compact && y < 8) compact = false;
+      header.classList.toggle("is-scrolled", compact);
+    };
+    applyHeader();
+    window.addEventListener("scroll", function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(applyHeader); }
+    }, { passive: true });
   }
-  applyHeader();
-  window.addEventListener("scroll", function () {
-    if (!ticking) { ticking = true; requestAnimationFrame(applyHeader); }
-  }, { passive: true });
 
   // ---- Background dots clear around the mouse (eased so it trails a little) ----
   if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
@@ -249,13 +226,13 @@
     var raf = 0;
     var instant = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    function stepLens() {
+    var stepLens = function () {
       lens.x += (target.x - lens.x) * (instant ? 1 : 0.18);
       lens.y += (target.y - lens.y) * (instant ? 1 : 0.18);
       rootStyle.setProperty("--mx", lens.x.toFixed(1) + "px");
       rootStyle.setProperty("--my", lens.y.toFixed(1) + "px");
       raf = Math.abs(target.x - lens.x) + Math.abs(target.y - lens.y) > 0.5 ? requestAnimationFrame(stepLens) : 0;
-    }
+    };
 
     window.addEventListener("pointermove", function (e) {
       if (lens.x < -900) { lens.x = e.clientX; lens.y = e.clientY; }  // first move: no slide-in from the corner

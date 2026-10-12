@@ -2,17 +2,23 @@
  * Portfolio content. Edit this file to add or change projects.
  *
  * category : "plugin" | "website" | "case-study"
- * image    : path to a screenshot, e.g. "assets/smartupweb.jpg" (optional)
- * mock     : built-in illustration when there is no image:
- *            "banner" | "inquiry" | "consent" | "booking" | "website"
- * frame    : true = show the whole image as a framed screenshot on the grey
- *            canvas instead of filling (and cropping) the card
- * link     : URL for "View project" (optional)
+ * image    : path to a cover, e.g. "assets/smartupweb.jpg" (optional)
+ * mock     : built-in illustration when there is no image: "website"
+ * frame    : true = show the whole image as a framed screenshot on a
+ *            gradient taken from its colours, instead of filling the card
+ * link     : the project's main external link (GitHub, live site, Figma)
  * wide     : true = card spans the full width
  * draft    : true = shown when you preview locally, hidden on github.io
+ *
+ * Project page (project.html?p=<slug>) — shown when a project has `slug` and `sections`:
+ * slug     : short id used in the URL
+ * actions  : buttons at the top of the page: [{ label, href, primary }]
+ * facts    : the "At a glance" list: [[label, value], ...]
+ * sections : [{ h: "Heading", p: "Paragraph" }] or [{ h: "Heading", list: ["...", "..."] }]
  */
 window.PROJECTS = [
   {
+    slug: "smartupweb",
     title: "smartupweb.com",
     category: "website",
     year: "2026",
@@ -24,8 +30,32 @@ window.PROJECTS = [
     image: "",
     link: "https://smartupweb.com",
     wide: true,
+    actions: [{ label: "Visit smartupweb.com", href: "https://smartupweb.com", primary: true }],
+    facts: [
+      ["Type", "Agency website"],
+      ["Role", "Design & WordPress build"],
+      ["Platform", "WordPress, Elementor, Ohio theme"],
+      ["Languages", "English & Greek (WPML)"],
+      ["Hosting", "Bluehost behind Cloudflare"],
+      ["Status", "Live since October 2026"],
+    ],
+    sections: [
+      { h: "Overview", p: "The website of Smartup, the studio I work at. It presents what we do, shows our work and turns visitors into project requests." },
+      { h: "The problem", p: "An agency site has to prove the craft it sells. It needed to look distinctive, load fast, work in two languages and respect privacy rules, without becoming hard for the team to update." },
+      { h: "Who it's for", p: "Businesses looking for a partner for websites, e-shops, apps and design." },
+      { h: "My role", p: "I designed the site and built it in WordPress: layouts in Elementor on top of the Ohio theme, the custom plugins it runs on, and the launch itself." },
+      { h: "Design approach", p: "Pages were designed first, then rebuilt in Elementor with the same spacing, type and components, so what was approved is what went live." },
+      { h: "A 3D hero", p: "The homepage hero is a looping 3D shape made in Blender. It's rendered as a transparent video and played with WebGL, so it stays sharp and light on any background." },
+      { h: "Two languages", p: "Pages, menus and plugin texts exist in English and Greek through WPML, including the cookie banner and the quote form." },
+      { h: "Leads that arrive as briefs", p: "Instead of a plain contact form, visitors use SmartInquiry: a step-by-step request form that hands the team a PDF brief." },
+      { h: "Privacy first", p: "Cookies are handled by SmartConsent with Google Consent Mode v2, and the Google Fonts are self-hosted, so the site makes no font requests to Google." },
+      { h: "Performance", p: "The site sits behind Cloudflare, with local fonts and lean plugins, to keep pages quick to load." },
+      { h: "Built with", list: ["Figma for design", "WordPress, Elementor and the Ohio theme", "WPML for English and Greek", "Blender and WebGL for the hero", "SmartBanner, SmartInquiry and SmartConsent", "Cloudflare and Bluehost"] },
+      { h: "Launch", p: "The site went live over HTTPS in October 2026, with social sharing images ready." },
+    ],
   },
   {
+    slug: "tokenflow",
     title: "TokenFlow",
     category: "plugin",
     year: "2026",
@@ -36,8 +66,32 @@ window.PROJECTS = [
     image: "assets/tokenflow-cover.jpg",
     frame: true,
     link: "https://www.figma.com/community/plugin/1645934997243256853/tokenflow",
+    actions: [{ label: "Open in Figma Community", href: "https://www.figma.com/community/plugin/1645934997243256853/tokenflow", primary: true }],
+    facts: [
+      ["Type", "Figma plugin"],
+      ["Role", "Design & development"],
+      ["For", "Designers and product teams"],
+      ["Released", "June 2026 (version 1)"],
+      ["Network access", "None: everything stays in your file"],
+      ["Price", "Free on Figma Community"],
+    ],
+    sections: [
+      { h: "Overview", p: "TokenFlow turns the colors and type already in a Figma file into an organized token system, ready for developers." },
+      { h: "The problem", p: "Real design files collect dozens of near-identical colors and text styles. Turning them into clean tokens by hand is slow, and handoff to code suffers when names and values drift." },
+      { h: "Who it's for", p: "Designers and product teams who want a token system without spending days renaming styles by hand." },
+      { h: "My role", p: "I designed the plugin's interface and built it with the Figma Plugin API." },
+      { h: "How it works", list: ["Scan colors and typography from the selected layers or the whole page", "Generate primitive color scales", "Assign semantic roles such as background or text", "Create organized Figma variables with Light and Dark modes", "Export tokens for developers"] },
+      { h: "Start from what's there", p: "You don't begin from a blank token sheet. TokenFlow reads the file you already have, from a single selection or a whole page." },
+      { h: "Light and Dark from the start", p: "Semantic roles point to primitive colors, so a Dark mode is a second set of choices, not a second file." },
+      { h: "Private by design", p: "The plugin has no network access. Your colors, names and files never leave Figma." },
+      { h: "Better handoff", p: "Developers get tokens that match the variables in Figma, so design and code use the same names for the same values." },
+      { h: "Built with", list: ["Figma Plugin API", "Figma Variables with modes", "HTML, CSS and JavaScript for the plugin UI"] },
+      { h: "Outcome", p: "Version 1 was published on the Figma Community in June 2026." },
+      { h: "Get it", p: "TokenFlow is free. Open it from the Figma Community page and run it on any file." },
+    ],
   },
   {
+    slug: "smartbanner",
     title: "SmartBanner",
     category: "plugin",
     year: "2026",
@@ -48,8 +102,35 @@ window.PROJECTS = [
     image: "assets/smartbanner-cover.jpg",
     frame: true,
     link: "https://github.com/gglias/smartbanner",
+    actions: [
+      { label: "View on GitHub", href: "https://github.com/gglias/smartbanner", primary: true },
+      { label: "Download .zip", href: "https://github.com/gglias/smartbanner/releases/latest" },
+    ],
+    facts: [
+      ["Type", "WordPress plugin"],
+      ["Role", "Design & development"],
+      ["Version", "1.3.7"],
+      ["Requires", "WordPress 6.1+, PHP 7.4+"],
+      ["Languages", "English & Greek, WPML ready"],
+      ["License", "GPL-2.0-or-later"],
+    ],
+    sections: [
+      { h: "Overview", p: "A small floating card in the bottom corner of the site that promotes one thing: a blog post you pick, or your own message." },
+      { h: "The problem", p: "New posts get buried fast, and popups that cover the page annoy people. We wanted a way to point visitors to fresh content without getting in their way." },
+      { h: "Who it's for", p: "Site owners and editors who publish regularly and want one post or offer to stand out." },
+      { h: "My role", p: "I designed the banner and its settings screen, and built the plugin." },
+      { h: "Post or custom content", p: "Choose a published post and the title, excerpt and featured image fill in automatically. Or write your own label, title, text, image and button." },
+      { h: "Polite by design", p: "It appears after a delay you choose and sits in a corner. Once a visitor closes it, it stays closed until the content changes." },
+      { h: "Your controls", list: ["Left or right corner, with X/Y offsets", "Show delay from 0 to 120 seconds", "How long it stays hidden after closing", "Show or hide on mobile, and hide the image on small screens", "Button colors and z-index", "Show it to everyone again with one click"] },
+      { h: "Multilingual", p: "With WPML, every language has its own banner text. English and Greek defaults are included, along with a Greek translation of the admin." },
+      { h: "Editor-friendly", p: "It stays out of the way inside Elementor, WPBakery and the Customizer, and never shows on the post it's promoting. Admins can preview it with ?smartbanner_preview." },
+      { h: "Safe by default", p: "It refuses password-protected or non-public posts, so nothing private can be promoted by mistake." },
+      { h: "Built with", list: ["PHP and the WordPress admin", "Vanilla JavaScript and CSS on the front end", "WPML for multilingual content"] },
+      { h: "Outcome", p: "It runs on smartupweb.com and is now free and open source on GitHub." },
+    ],
   },
   {
+    slug: "smartinquiry",
     title: "SmartInquiry",
     category: "plugin",
     year: "2026",
@@ -60,8 +141,35 @@ window.PROJECTS = [
     image: "assets/smartinquiry-cover.jpg",
     frame: true,
     link: "https://github.com/gglias/smartinquiry",
+    actions: [
+      { label: "View on GitHub", href: "https://github.com/gglias/smartinquiry", primary: true },
+      { label: "Download .zip", href: "https://github.com/gglias/smartinquiry/releases/latest" },
+    ],
+    facts: [
+      ["Type", "WordPress plugin"],
+      ["Role", "Design & development"],
+      ["Version", "1.3.0"],
+      ["Requires", "WordPress 6.1+, PHP 7.4+"],
+      ["Languages", "English & Greek, WPML ready"],
+      ["License", "GPL-2.0-or-later"],
+    ],
+    sections: [
+      { h: "Overview", p: "A quote request form that opens in a popup and walks visitors through their project one step at a time." },
+      { h: "The problem", p: "A plain contact form brings emails like \"how much for a website?\". Every lead then needs a round of questions before anyone can give a real answer." },
+      { h: "Who it's for", p: "Agencies and freelancers who want leads that arrive with enough detail to quote." },
+      { h: "My role", p: "I designed the form, the PDF and the admin inbox, and built the whole plugin." },
+      { h: "The flow", list: ["Pick a service", "Answer that service's questions", "Choose a budget and timeline", "Leave contact details and a preferred contact method"] },
+      { h: "A live summary", p: "As visitors answer, a summary builds up beside the form, so they can see and fix what they're sending." },
+      { h: "A PDF brief", p: "Each request becomes a PDF with your logo and company details, made on the server with a browser fallback. The visitor can download it, and it's attached to your notification email." },
+      { h: "A real inbox", p: "Requests land in wp-admin with status, notes, bulk actions and CSV export. Desktop notifications with a sound tell you when a new one arrives." },
+      { h: "Team roles", p: "Two extra roles let colleagues see the requests, and optionally the settings, without access to the rest of WordPress." },
+      { h: "Security and privacy", list: ["Optional Cloudflare Turnstile against spam", "Signed tokens and rate limiting on its endpoints", "Works with WordPress's personal data export and erase tools", "Old requests are deleted after the period you set", "Storing IP addresses is optional"] },
+      { h: "Built with", list: ["PHP, the WordPress REST API and custom roles", "GD and FreeType for server-side PDFs, with the Inter font", "Vanilla JavaScript for the popup and the PDF fallback", "WPML for English and Greek"] },
+      { h: "Outcome", p: "It's the quote form on smartupweb.com, and is now free and open source on GitHub." },
+    ],
   },
   {
+    slug: "smartconsent",
     title: "SmartConsent",
     category: "plugin",
     year: "2026",
@@ -72,8 +180,35 @@ window.PROJECTS = [
     image: "assets/smartconsent-cover.jpg",
     frame: true,
     link: "https://github.com/gglias/smartconsent",
+    actions: [
+      { label: "View on GitHub", href: "https://github.com/gglias/smartconsent", primary: true },
+      { label: "Download .zip", href: "https://github.com/gglias/smartconsent/releases/latest" },
+    ],
+    facts: [
+      ["Type", "WordPress plugin"],
+      ["Role", "Design & development"],
+      ["Version", "1.0.2"],
+      ["Requires", "WordPress 6.1+, PHP 7.4+"],
+      ["Languages", "English & Greek, WPML ready"],
+      ["License", "GPL-2.0-or-later"],
+    ],
+    sections: [
+      { h: "Overview", p: "A cookie banner that does the job properly: scripts really wait for consent, and the cookie policy largely takes care of itself." },
+      { h: "The problem", p: "Many cookie plugins are heavy, push visitors towards \"Accept\", or show a banner while trackers load anyway. We wanted something light, honest and compliant." },
+      { h: "Who it's for", p: "WordPress sites that use analytics or marketing tags and want consent handled correctly in more than one language." },
+      { h: "My role", p: "I designed the banner and the admin screens, and built the plugin." },
+      { h: "Four clear choices", p: "Necessary, Preferences, Statistics and Marketing. Accept and Reject get equal weight by default, so neither choice is pushed." },
+      { h: "Google Consent Mode v2", p: "Everything starts as \"denied\" and updates the moment the visitor chooses. Google, Meta Pixel, Microsoft Clarity and Hotjar load only after consent." },
+      { h: "Blocks what others add", p: "Known tracking tags from other plugins or the theme are held back until consent. YouTube, Vimeo and Google Maps embeds show an \"Accept and show\" placeholder." },
+      { h: "Respects the browser", p: "It honours the Global Privacy Control signal, and cleans up cookies when consent is withdrawn." },
+      { h: "Anonymous consent log", p: "Every choice is logged for your records with a random ID only. No IP address, no user agent." },
+      { h: "A policy that writes itself", list: ["Scans the site for cookies and known services", "A built-in library of common services and their cookies", "One-click cookie policy page in English and Greek", "Shortcodes for the cookie table and a footer \"Cookies\" link"] },
+      { h: "Built with", list: ["PHP and the WordPress REST API", "Vanilla JavaScript, loaded early in the page head", "WPML for multilingual banners and policy pages"] },
+      { h: "Outcome", p: "It handles cookies on smartupweb.com, and is now free and open source on GitHub." },
+    ],
   },
   {
+    slug: "simple-booking",
     title: "Simple Booking",
     category: "plugin",
     year: "2026",
@@ -84,6 +219,32 @@ window.PROJECTS = [
     image: "assets/simple-booking-cover.jpg",
     frame: true,
     link: "https://github.com/gglias/simple-booking",
+    actions: [
+      { label: "View on GitHub", href: "https://github.com/gglias/simple-booking", primary: true },
+      { label: "Download beta", href: "https://github.com/gglias/simple-booking/releases" },
+    ],
+    facts: [
+      ["Type", "WordPress plugin"],
+      ["Role", "Design & development"],
+      ["Version", "0.1.0 (beta)"],
+      ["Requires", "WordPress 6.4+, PHP 8.0+"],
+      ["Built for", "A single hair salon"],
+      ["License", "GPL-2.0-or-later"],
+    ],
+    sections: [
+      { h: "Overview", p: "A booking system for one salon: clients choose a service, a stylist and a free time slot, and the salon gets the appointment." },
+      { h: "The problem", p: "Small salons take most bookings by phone, often in the middle of a haircut. Booking plugins built for every kind of business are complicated to set up for just one." },
+      { h: "Scope on purpose", list: ["One salon, with a fixed team", "Guest bookings, no customer accounts", "No online payments: clients pay at the salon"] },
+      { h: "My role", p: "I designed the booking flow and the admin, and I'm building the plugin." },
+      { h: "The booking flow", list: ["Pick a service, with optional extras", "Pick a stylist", "Pick a day and a free time", "Leave name and contact details"] },
+      { h: "Real availability", p: "Each stylist has a weekly schedule, and days off can block the whole salon or one person. Clients only see times that are actually free." },
+      { h: "Confirmations", p: "Clients get an email confirmation and a link to their appointment. The team gets an email for every new booking." },
+      { h: "For the salon", p: "In wp-admin the salon manages appointments in a calendar, along with services, extras, staff, schedules, days off and settings." },
+      { h: "Under the hood", p: "Prices are stored as whole cents and every time is stored in UTC, then shown in the salon's own time zone, so nothing drifts with daylight saving." },
+      { h: "Built with", list: ["PHP 8 with custom database tables", "The WordPress REST API", "Vanilla JavaScript for the booking widget and calendar"] },
+      { h: "Status", p: "Beta. It works end to end, but it's still being refined. Test it on a staging site first." },
+      { h: "Try it", p: "Download the beta from GitHub, then put [simple_booking] on a page." },
+    ],
   },
 
   /* ---- Fill these in, then delete `draft: true` to publish them ---- */
