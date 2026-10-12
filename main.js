@@ -195,6 +195,36 @@
     if (!ticking) { ticking = true; requestAnimationFrame(applyHeader); }
   }, { passive: true });
 
+  // ---- Background dots clear around the mouse (eased so it trails a little) ----
+  if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    var rootStyle = document.documentElement.style;
+    var target = { x: -999, y: -999 };
+    var lens = { x: -999, y: -999 };
+    var raf = 0;
+    var instant = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function stepLens() {
+      lens.x += (target.x - lens.x) * (instant ? 1 : 0.18);
+      lens.y += (target.y - lens.y) * (instant ? 1 : 0.18);
+      rootStyle.setProperty("--mx", lens.x.toFixed(1) + "px");
+      rootStyle.setProperty("--my", lens.y.toFixed(1) + "px");
+      raf = Math.abs(target.x - lens.x) + Math.abs(target.y - lens.y) > 0.5 ? requestAnimationFrame(stepLens) : 0;
+    }
+
+    window.addEventListener("pointermove", function (e) {
+      if (lens.x < -900) { lens.x = e.clientX; lens.y = e.clientY; }  // first move: no slide-in from the corner
+      target.x = e.clientX;
+      target.y = e.clientY;
+      if (!raf) raf = requestAnimationFrame(stepLens);
+    }, { passive: true });
+
+    document.documentElement.addEventListener("pointerleave", function () {
+      target.x = target.y = lens.x = lens.y = -999;
+      rootStyle.setProperty("--mx", "-999px");
+      rootStyle.setProperty("--my", "-999px");
+    });
+  }
+
   var year = document.querySelector("[data-year]");
   if (year) year.textContent = new Date().getFullYear();
 })();

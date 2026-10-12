@@ -29,16 +29,26 @@ html {
 
 body {
   margin: 0;
-  /* Figma-canvas dot grid across the whole site */
-  background:
-    radial-gradient(circle, var(--dot) 1px, transparent 1.2px) 0 0 / 18px 18px,
-    var(--paper);
+  background: var(--paper);
   color: var(--ink);
   font-family: var(--f-body);
   font-size: 1.0625rem;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+/* Figma-canvas dot grid behind the whole site.
+   The dots fade out in a soft circle around the mouse (--mx / --my set in main.js). */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(circle, var(--dot) 1.1px, transparent 1.4px) 0 0 / 28px 28px;
+  -webkit-mask-image: radial-gradient(circle 150px at var(--mx, -999px) var(--my, -999px), transparent 0, transparent 35%, #000 100%);
+  mask-image: radial-gradient(circle 150px at var(--mx, -999px) var(--my, -999px), transparent 0, transparent 35%, #000 100%);
 }
 
 h1, h2, h3 {
