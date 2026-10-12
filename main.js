@@ -178,6 +178,12 @@
     revealables.forEach(function (el) { el.classList.add("is-in"); });
   }
 
+  // ---- Compact header once the page is scrolled ----
+  var header = document.querySelector("[data-header]");
+  function onScroll() { header.classList.toggle("is-scrolled", window.scrollY > 8); }
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+
   var year = document.querySelector("[data-year]");
   if (year) year.textContent = new Date().getFullYear();
 })();

@@ -20,7 +20,11 @@
 *::before,
 *::after { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px; /* keep section titles clear of the sticky header */
+  -webkit-text-size-adjust: 100%;
+}
 
 body {
   margin: 0;
@@ -65,16 +69,29 @@ img { max-width: 100%; display: block; }
   background: var(--ink);
   color: var(--paper);
   font: 500 14px var(--f-ui);
-  z-index: 10;
+  z-index: 30;
 }
 .skip:focus { top: 12px; }
 
 /* ================= Header ================= */
+/* Full-width sticky header */
 .top {
+  position: sticky;
+  top: 0;
+  z-index: 20;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-block: 22px;
+  padding: 22px clamp(24px, 4vw, 56px);
+  background: rgb(255 255 255 / 0.88);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid transparent;
+  transition: padding 0.3s var(--ease), border-color 0.3s;
+}
+.top.is-scrolled {
+  padding-block: 10px;
+  border-bottom-color: var(--hair);
 }
 
 .brand {
@@ -82,7 +99,12 @@ img { max-width: 100%; display: block; }
   line-height: 0;
   transition: opacity 0.2s;
 }
-.brand img { height: 78px; width: auto; }
+.brand img {
+  height: 78px;
+  width: auto;
+  transition: height 0.3s var(--ease);
+}
+.top.is-scrolled .brand img { height: 52px; }
 .brand:hover { opacity: 0.65; }
 
 .nav { display: flex; gap: clamp(14px, 3vw, 32px); }
