@@ -59,6 +59,33 @@
       </div>
     </section>
 
+    <!-- LAB: Figma → WordPress animation test. Lives in lab.js; delete this block + the script tag to remove. -->
+    <section class="lab wrap" aria-label="Figma to WordPress animation">
+      <p class="lab-tag">Test · Figma → WordPress</p>
+      <div class="stage" data-stage>
+        <svg class="stage-svg" viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+          <g transform="translate(62 43) scale(2)">
+            <path class="fig-piece" data-c="9.5,9.5" data-from="-14,-14" fill="#F24E1E" d="M19 0H9.5a9.5 9.5 0 0 0 0 19H19z"/>
+            <path class="fig-piece" data-c="28.5,9.5" data-from="14,-14" fill="#FF7262" d="M19 0h9.5a9.5 9.5 0 0 1 0 19H19z"/>
+            <path class="fig-piece" data-c="9.5,28.5" data-from="-18,0" fill="#A259FF" d="M19 19H9.5a9.5 9.5 0 0 0 0 19H19z"/>
+            <circle class="fig-piece" data-c="28.5,28.5" data-from="18,0" fill="#1ABCFE" cx="28.5" cy="28.5" r="9.5"/>
+            <path class="fig-piece" data-c="9.5,47.5" data-from="-14,14" fill="#0ACF83" d="M9.5 38H19v9.5A9.5 9.5 0 1 1 9.5 38z"/>
+          </g>
+          <g transform="translate(45 45) scale(4.5833)">
+            <circle class="wp-ring" cx="12" cy="12" r="11.4" fill="none" stroke="#21759B" stroke-width="1.2" pathLength="1" transform="rotate(-90 12 12)"/>
+            <path class="wp-logo" fill="#21759B" d="M21.469 6.825c.84 1.537 1.318 3.3 1.318 5.175 0 3.979-2.156 7.456-5.363 9.325l3.295-9.527c.615-1.54.82-2.771.82-3.864 0-.405-.026-.78-.07-1.11m-7.981.105c.647-.03 1.232-.105 1.232-.105.582-.075.514-.93-.067-.899 0 0-1.755.135-2.880.135-1.064 0-2.850-.15-2.850-.15-.585-.03-.661.855-.075.885 0 0 .54.061 1.125.09l1.680 4.605-2.370 7.080L5.354 6.9c.649-.03 1.234-.1 1.234-.1.585-.075.516-.93-.065-.896 0 0-1.746.138-2.874.138-.2 0-.438-.008-.69-.015C4.911 3.15 8.235 1.215 12 1.215c2.809 0 5.365 1.072 7.286 2.833-.046-.003-.091-.009-.141-.009-1.060 0-1.812.923-1.812 1.914 0 .89.513 1.643 1.060 2.531.411.72.89 1.643.89 2.977 0 .915-.354 1.994-.821 3.479l-1.075 3.585-3.9-11.610.001.014zM12 22.784c-1.059 0-2.081-.153-3.048-.437l3.237-9.406 3.315 9.087c.024.053.05.101.078.149-1.12.393-2.325.609-3.582.609M1.211 12c0-1.564.336-3.05.935-4.39L7.290 21.709C3.694 19.960 1.212 16.271 1.211 12M12 0C5.385 0 0 5.385 0 12s5.385 12 12 12 12-5.385 12-12S18.615 0 12 0"/>
+          </g>
+        </svg>
+        <div class="sel" data-sel aria-hidden="true">
+          <span class="sel-label" data-sel-label>Figma</span>
+          <span class="handle h-tl"></span><span class="handle h-tr"></span>
+          <span class="handle h-bl"></span><span class="handle h-br"></span>
+          <span class="sel-size" data-sel-size></span>
+        </div>
+      </div>
+      <button type="button" class="lab-replay" data-replay>Replay</button>
+    </section>
+
     <!-- Work -->
     <section class="work wrap" id="work" aria-labelledby="work-title">
       <div class="section-head">
@@ -152,5 +179,6 @@
 
   <script src="projects.js"></script>
   <script src="main.js"></script>
+  <script src="lab.js"></script>
 </body>
 </html>

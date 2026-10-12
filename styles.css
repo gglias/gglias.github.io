@@ -310,6 +310,95 @@ body { padding-top: var(--header-h); }
 }
 .cta:hover { background: var(--ink); color: var(--paper); }
 
+/* ================= LAB: Figma → WordPress test ================= */
+.lab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: clamp(96px, 14vw, 160px);
+}
+
+.lab-tag {
+  margin: 0;
+  font: 500 12px/1 var(--f-ui);
+  color: var(--graphite);
+}
+
+/* A little piece of Figma canvas: grey with a dot grid */
+.stage {
+  position: relative;
+  width: min(420px, 100%);
+  aspect-ratio: 1;
+  border-radius: 4px;
+  background:
+    radial-gradient(circle, #d6d6d6 1px, transparent 1.2px) 0 0 / 18px 18px,
+    var(--canvas);
+}
+
+.stage-svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+
+.fig-piece,
+.wp-logo {
+  transform-box: fill-box;
+  transform-origin: center;
+  opacity: 0;
+}
+.wp-ring { stroke-dasharray: 1; stroke-dashoffset: 1; }
+
+/* Selection box: moves/resizes between the two logos */
+.sel {
+  position: absolute;
+  left: 28%;
+  top: 18.5%;
+  width: 44%;
+  height: 63%;
+  border: 1.5px solid var(--select);
+  opacity: 0;
+  transition:
+    left 0.6s var(--ease), top 0.6s var(--ease),
+    width 0.6s var(--ease), height 0.6s var(--ease),
+    opacity 0.3s ease;
+}
+.sel.is-on { opacity: 1; }
+.sel.is-wp { left: 19.5%; top: 19.5%; width: 61%; height: 61%; }
+
+.sel .handle { animation: none; transform: none; }
+
+.sel-label {
+  position: absolute;
+  left: -1.5px;
+  bottom: calc(100% + 6px);
+  font: 500 12px/1 var(--f-ui);
+  color: var(--select);
+  white-space: nowrap;
+}
+
+.sel-size {
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 8px);
+  transform: translateX(-50%);
+  padding: 3px 6px;
+  border-radius: 3px;
+  background: var(--select);
+  color: #fff;
+  font: 500 11px/1.3 var(--f-ui);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.lab-replay {
+  font: 500 13px/1 var(--f-ui);
+  color: var(--graphite);
+  background: none;
+  border: 1px solid var(--hair);
+  border-radius: 999px;
+  padding: 9px 14px;
+  cursor: pointer;
+}
+.lab-replay:hover { color: var(--ink); border-color: var(--ink); }
+
 /* ================= Section heads ================= */
 .section-head {
   display: flex;
