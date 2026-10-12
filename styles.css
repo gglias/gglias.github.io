@@ -74,14 +74,16 @@ img { max-width: 100%; display: block; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-block: 28px;
+  padding-block: 22px;
 }
 
 .brand {
-  font: 600 1.25rem/1 var(--f-display);
-  letter-spacing: -0.02em;
-  text-decoration: none;
+  display: block;
+  line-height: 0;
+  transition: opacity 0.2s;
 }
+.brand img { width: 56px; height: auto; }
+.brand:hover { opacity: 0.65; }
 
 .nav { display: flex; gap: clamp(14px, 3vw, 32px); }
 
