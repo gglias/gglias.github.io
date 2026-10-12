@@ -4,7 +4,7 @@
  * category : "plugin" | "website" | "case-study"
  * image    : path to a screenshot, e.g. "assets/smartupweb.jpg" (optional)
  * mock     : built-in illustration when there is no image:
- *            "banner" | "inquiry" | "consent" | "booking" | "website"
+ *            "banner" | "inquiry" | "consent" | "booking" | "website" | "tokens"
  * link     : URL for "View project" (optional)
  * wide     : true = card spans the full width
  * draft    : true = shown when you preview locally, hidden on github.io
@@ -22,6 +22,17 @@ window.PROJECTS = [
     image: "",
     link: "https://smartupweb.com",
     wide: true,
+  },
+  {
+    title: "TokenFlow",
+    category: "plugin",
+    year: "2026",
+    role: "Figma plugin · Design & development",
+    summary:
+      "A Figma plugin that organizes design tokens and smooths design-to-development handoff: scan colors and type, generate color scales, assign semantic roles, create Light/Dark variables and export tokens for developers.",
+    tags: ["Figma plugin", "Design tokens", "Variables"],
+    mock: "tokens",
+    link: "https://www.figma.com/community/plugin/1645934997243256853/tokenflow",
   },
   {
     title: "SmartBanner",

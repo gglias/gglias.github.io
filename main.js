@@ -59,6 +59,27 @@
       );
     })(),
 
+    tokens: (function () {
+      // TokenFlow plugin window: colour scales, semantic roles, Light/Dark, export
+      function scale(hues) {
+        return '<div class="m-scale">' + hues.map(function (c) { return '<i style="background:' + c + '"></i>'; }).join("") + "</div>";
+      }
+      return (
+        '<div class="m m-plugin">' +
+          '<div class="m-plugin-bar"><span class="m-plugin-name">TokenFlow</span><span class="m-x">×</span></div>' +
+          '<div class="m-plugin-body">' +
+            '<div class="m-tabs"><span>Scan</span><span class="on">Colors</span><span>Export</span></div>' +
+            '<div class="m-label">primary</div>' +
+            scale(["#e6f4ff", "#bfe3ff", "#8fcdff", "#59b4ff", "#0d99ff", "#0a7ad1", "#085ea1", "#064373"]) +
+            '<div class="m-label">neutral</div>' +
+            scale(["#f7f7f7", "#e9e9e9", "#d4d4d4", "#b0b0b0", "#8a8a8a", "#666", "#444", "#1e1e1e"]) +
+            '<div class="m-roles"><span><i style="background:#0d99ff"></i>bg/brand</span><span><i style="background:#1e1e1e"></i>text/default</span></div>' +
+            '<div class="m-row"><span class="m-modes"><span class="on">Light</span><span>Dark</span></span><span class="m-btn">Export tokens</span></div>' +
+          "</div>" +
+        "</div>"
+      );
+    })(),
+
     website:
       '<div class="m m-site m-browser">' +
         '<div class="m-bar"><i></i><i></i><i></i><span class="m-url">smartupweb.com</span></div>' +
