@@ -82,7 +82,7 @@ img { max-width: 100%; display: block; }
   line-height: 0;
   transition: opacity 0.2s;
 }
-.brand img { width: 56px; height: auto; }
+.brand img { height: 78px; width: auto; }
 .brand:hover { opacity: 0.65; }
 
 .nav { display: flex; gap: clamp(14px, 3vw, 32px); }
