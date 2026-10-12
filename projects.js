@@ -28,7 +28,7 @@ window.PROJECTS = [
     summary:
       "The Smartup website, in English and Greek. Built on Elementor with WPML, self-hosted fonts and Cloudflare in front, plus a looping 3D hero made in Blender.",
     tags: ["Figma", "WordPress", "Elementor", "WPML", "Blender"],
-    image: "assets/smartup-logo.png",
+    image: "assets/smartup-logo.svg",
     fit: "logo",
     bg: "radial-gradient(90% 80% at 0% 0%, rgba(70,233,212,0.45), transparent 70%), radial-gradient(90% 80% at 100% 100%, rgba(4,39,39,0.12), transparent 70%), linear-gradient(135deg, #effdfb, #e2f6f3)",
     link: "https://smartupweb.com",
