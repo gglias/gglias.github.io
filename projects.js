@@ -4,7 +4,9 @@
  * category : "plugin" | "website" | "case-study"
  * image    : path to a screenshot, e.g. "assets/smartupweb.jpg" (optional)
  * mock     : built-in illustration when there is no image:
- *            "banner" | "inquiry" | "consent" | "booking" | "website" | "tokens"
+ *            "banner" | "inquiry" | "consent" | "booking" | "website"
+ * frame    : true = show the whole image as a framed screenshot on the grey
+ *            canvas instead of filling (and cropping) the card
  * link     : URL for "View project" (optional)
  * wide     : true = card spans the full width
  * draft    : true = shown when you preview locally, hidden on github.io
@@ -31,7 +33,8 @@ window.PROJECTS = [
     summary:
       "A Figma plugin that organizes design tokens and smooths design-to-development handoff: scan colors and type, generate color scales, assign semantic roles, create Light/Dark variables and export tokens for developers.",
     tags: ["Figma plugin", "Design tokens", "Variables"],
-    mock: "tokens",
+    image: "assets/tokenflow-cover.jpg",
+    frame: true,
     link: "https://www.figma.com/community/plugin/1645934997243256853/tokenflow",
   },
   {
