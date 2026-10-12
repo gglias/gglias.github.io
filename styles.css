@@ -5,6 +5,7 @@
   --graphite: #6b6b6b;
   --hair: #e7e7e7;
   --canvas: #f5f5f5;      /* Figma canvas grey */
+  --dot: #dadada;         /* background dot grid */
   --select: #0d99ff;      /* Figma selection blue — used only for "selected" things */
 
   --f-display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
@@ -28,7 +29,10 @@ html {
 
 body {
   margin: 0;
-  background: var(--paper);
+  /* Figma-canvas dot grid across the whole site */
+  background:
+    radial-gradient(circle, var(--dot) 1px, transparent 1.2px) 0 0 / 18px 18px,
+    var(--paper);
   color: var(--ink);
   font-family: var(--f-body);
   font-size: 1.0625rem;
