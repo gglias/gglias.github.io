@@ -119,6 +119,52 @@
   grid.innerHTML = projects.map(card).join("");
   var cards = Array.prototype.slice.call(grid.querySelectorAll(".card"));
 
+  // ---- Framed covers: tint the empty space around them with the image's own colours ----
+  function coverGradient(img) {
+    try {
+      var w = 48, h = Math.max(1, Math.round(48 * img.naturalHeight / img.naturalWidth));
+      var cv = document.createElement("canvas");
+      cv.width = w; cv.height = h;
+      var ctx = cv.getContext("2d", { willReadFrequently: true });
+      ctx.drawImage(img, 0, 0, w, h);
+      var px = ctx.getImageData(0, 0, w, h).data;
+
+      // Bucket the colourful pixels by hue, weighted by saturation
+      var buckets = [];
+      for (var b = 0; b < 12; b++) buckets.push({ r: 0, g: 0, b: 0, n: 0 });
+      for (var i = 0; i < px.length; i += 4) {
+        var r = px[i] / 255, g = px[i + 1] / 255, bl = px[i + 2] / 255;
+        var max = Math.max(r, g, bl), min = Math.min(r, g, bl), l = (max + min) / 2, d = max - min;
+        if (d < 0.08 || l < 0.15 || l > 0.92) continue;          // skip greys, near-black, near-white
+        var s = d / (1 - Math.abs(2 * l - 1));
+        var hue = max === r ? ((g - bl) / d + 6) % 6 : max === g ? (bl - r) / d + 2 : (r - g) / d + 4;
+        var k = Math.floor(hue * 2) % 12;
+        buckets[k].r += px[i] * s; buckets[k].g += px[i + 1] * s; buckets[k].b += px[i + 2] * s; buckets[k].n += s;
+      }
+      var top = buckets.filter(function (x) { return x.n > 0; })
+        .sort(function (a, z) { return z.n - a.n; })
+        .slice(0, 2)
+        .map(function (x) { return [Math.round(x.r / x.n), Math.round(x.g / x.n), Math.round(x.b / x.n)]; });
+      if (!top.length) return;
+      if (top.length === 1) top.push(top[0]);
+
+      function rgba(c, a) { return "rgba(" + c[0] + "," + c[1] + "," + c[2] + "," + a + ")"; }
+      function tint(c, t) { return "rgb(" + c.map(function (v) { return Math.round(v + (255 - v) * t); }).join(",") + ")"; }
+
+      img.parentNode.style.background =
+        "radial-gradient(90% 80% at 0% 0%, " + rgba(top[0], 0.6) + ", transparent 70%)," +
+        "radial-gradient(90% 80% at 100% 100%, " + rgba(top[1], 0.6) + ", transparent 70%)," +
+        "linear-gradient(135deg, " + tint(top[0], 0.75) + ", " + tint(top[1], 0.75) + ")";
+    } catch (e) {
+      /* keep the plain grey canvas */
+    }
+  }
+
+  grid.querySelectorAll("img.is-framed").forEach(function (img) {
+    if (img.complete && img.naturalWidth) coverGradient(img);
+    else img.addEventListener("load", function () { coverGradient(img); });
+  });
+
   // ---- Live W × H readouts, like Figma's size label ----
   function fmt(el) {
     var r = el.getBoundingClientRect();
