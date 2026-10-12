@@ -310,7 +310,7 @@ body { padding-top: var(--header-h); }
 }
 .cta:hover { background: var(--ink); color: var(--paper); }
 
-/* ================= LAB: Figma → WordPress test ================= */
+/* ================= LAB: Designed in Figma, built in WordPress ================= */
 .lab {
   display: flex;
   flex-direction: column;
@@ -325,45 +325,112 @@ body { padding-top: var(--header-h); }
   color: var(--graphite);
 }
 
-/* A little piece of Figma canvas: grey with a dot grid */
-.stage {
+.lab-replay {
+  font: 500 13px/1 var(--f-ui);
+  color: var(--graphite);
+  background: none;
+  border: 1px solid var(--hair);
+  border-radius: 999px;
+  padding: 9px 14px;
+  cursor: pointer;
+}
+.lab-replay:hover { color: var(--ink); border-color: var(--ink); }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.duo {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(12px, 2vw, 24px);
+}
+
+.duo-link {
+  font: 500 22px/1 var(--f-ui);
+  color: var(--graphite);
+}
+
+.pane {
   position: relative;
-  width: min(420px, 100%);
-  aspect-ratio: 1;
-  border-radius: 4px;
+  margin: 0;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--hair);
+  border-radius: 10px;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.04), 0 18px 40px -24px rgb(0 0 0 / 0.25);
+}
+
+.pane-bar {
+  height: 38px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  font: 500 12px/1 var(--f-ui);
+  color: #fff;
+}
+.pane-bar--figma { background: #2c2c2c; }
+.pane-bar--wp { background: #1d2327; }      /* WordPress admin bar */
+
+.bar-icon { height: 16px; width: auto; flex: none; }
+.bar-meta { margin-left: auto; color: rgb(255 255 255 / 0.5); }
+
+.el-chip {
+  padding: 4px 7px;
+  border-radius: 3px;
+  background: #92003b;                        /* Elementor */
+  font-size: 11px;
+}
+
+.el-publish {
+  margin-left: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+  background: #fff;
+  color: #1d2327;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* Figma canvas: grey with a dot grid */
+.pane-canvas {
+  height: 280px;
+  display: grid;
+  place-items: center;
   background:
     radial-gradient(circle, #d6d6d6 1px, transparent 1.2px) 0 0 / 18px 18px,
     var(--canvas);
 }
 
-.stage-svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-
-.fig-piece,
-.wp-logo {
-  transform-box: fill-box;
-  transform-origin: center;
-  opacity: 0;
+/* The logo + wordmark, identical on both sides */
+.art {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
-.wp-ring { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.art-mark { height: 64px; width: auto; overflow: visible; }
+.art-word {
+  font: 600 36px/1 var(--f-ui);
+  letter-spacing: -0.035em;
+  color: #000;
+}
 
-/* Selection box: moves/resizes between the two logos */
-.sel {
+.art-sel {
   position: absolute;
-  left: 28%;
-  top: 18.5%;
-  width: 44%;
-  height: 63%;
+  inset: -12px -14px;
   border: 1.5px solid var(--select);
-  opacity: 0;
-  transition:
-    left 0.6s var(--ease), top 0.6s var(--ease),
-    width 0.6s var(--ease), height 0.6s var(--ease),
-    opacity 0.3s ease;
+  pointer-events: none;
 }
-.sel.is-on { opacity: 1; }
-.sel.is-wp { left: 19.5%; top: 19.5%; width: 61%; height: 61%; }
-
-.sel .handle { animation: none; transform: none; }
+.art-sel .handle { animation: none; transform: none; }
 
 .sel-label {
   position: absolute;
@@ -388,16 +455,138 @@ body { padding-top: var(--header-h); }
   white-space: nowrap;
 }
 
-.lab-replay {
-  font: 500 13px/1 var(--f-ui);
-  color: var(--graphite);
-  background: none;
-  border: 1px solid var(--hair);
-  border-radius: 999px;
-  padding: 9px 14px;
-  cursor: pointer;
+/* Elementor editor */
+.el-body {
+  height: 280px;
+  display: grid;
+  grid-template-columns: 88px minmax(0, 1fr);
 }
-.lab-replay:hover { color: var(--ink); border-color: var(--ink); }
+
+.el-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 8px;
+  background: #f7f7f8;
+  border-right: 1px solid #e8e8e8;
+}
+
+.el-panel-title {
+  margin: 0 0 2px;
+  font: 600 9.5px/1 var(--f-ui);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #9a9a9a;
+}
+
+.el-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 9px 4px;
+  background: #fff;
+  border: 1px solid #e3e3e3;
+  border-radius: 4px;
+  font: 500 10.5px/1 var(--f-ui);
+  color: #556068;
+  transition: border-color 0.15s, color 0.15s, box-shadow 0.15s;
+}
+.el-tile svg { width: 16px; height: 16px; }
+.el-tile.is-grab {
+  border-color: #92003b;
+  color: #92003b;
+  box-shadow: 0 0 0 3px rgb(146 0 59 / 0.1);
+}
+
+.el-canvas {
+  position: relative;
+  display: grid;
+  place-items: center;
+  background: #fff;
+}
+
+.build-piece {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.art-word.build-piece { display: inline-block; }
+
+.el-outline {
+  position: absolute;
+  left: 0;
+  top: 0;
+  border: 1.5px solid #71d7f7;               /* Elementor widget outline */
+  opacity: 0;
+  pointer-events: none;
+}
+.el-handle {
+  position: absolute;
+  right: -1.5px;
+  top: -1.5px;
+  transform: translateY(-100%);
+  padding: 2px 4px;
+  border-radius: 2px 2px 0 0;
+  background: #71d7f7;
+  color: #fff;
+  font: 600 9px/1 var(--f-ui);
+}
+
+.el-toast {
+  position: absolute;
+  left: 50%;
+  bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 11px 7px 8px;
+  border-radius: 999px;
+  background: #1d2327;
+  color: #fff;
+  font: 500 11px/1 var(--f-ui);
+  white-space: nowrap;
+  opacity: 0;
+  transform: translate(-50%, 8px);
+}
+.el-toast svg { width: 14px; height: 14px; fill: #4ade80; }
+
+.el-cursor {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 5;
+  width: 16px;
+  height: 20px;
+  opacity: 0;
+  pointer-events: none;
+  filter: drop-shadow(0 1px 1px rgb(0 0 0 / 0.25));
+}
+
+.el-ghost {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 4;
+  padding: 6px 8px;
+  background: #fff;
+  border: 1px solid #92003b;
+  border-radius: 4px;
+  color: #92003b;
+  font: 500 10.5px/1 var(--f-ui);
+  box-shadow: 0 8px 18px -8px rgb(0 0 0 / 0.35);
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 760px) {
+  .duo { grid-template-columns: minmax(0, 1fr); }
+  .duo-link { justify-self: center; transform: rotate(90deg); }
+  .pane-canvas,
+  .el-body { height: 240px; }
+  .art-mark { height: 52px; }
+  .art-word { font-size: 30px; }
+}
 
 /* ================= Section heads ================= */
 .section-head {
