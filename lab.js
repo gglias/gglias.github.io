@@ -75,6 +75,7 @@
   function reset() {
     builder.getAnimations({ subtree: true }).forEach(function (a) { a.cancel(); });
     builder.querySelectorAll(".is-grab").forEach(function (t) { t.classList.remove("is-grab"); });
+    cursor.classList.remove("is-hand");
     pieces.forEach(function (p) { p.style.opacity = ""; });
     toast.style.opacity = "";
   }
@@ -135,6 +136,8 @@
         // Publish
         var pub = box(publish);
         await move(pub.cx - 4, pub.cy - 4, 600, id);
+        cursor.classList.add("is-hand");        // over a button: Mac hand, like the real cursor
+        await wait(180, id);
         click();
         publish.animate([{ transform: "scale(1)" }, { transform: "scale(0.9)" }, { transform: "scale(1)" }], { duration: 240 });
         await wait(200, id);
