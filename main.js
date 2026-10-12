@@ -179,10 +179,21 @@
   }
 
   // ---- Compact header once the page is scrolled ----
+  // Two thresholds so it can't flip back and forth around a single point.
   var header = document.querySelector("[data-header]");
-  function onScroll() { header.classList.toggle("is-scrolled", window.scrollY > 8); }
-  onScroll();
-  window.addEventListener("scroll", onScroll, { passive: true });
+  var compact = false;
+  var ticking = false;
+  function applyHeader() {
+    ticking = false;
+    var y = window.scrollY;
+    if (!compact && y > 40) compact = true;
+    else if (compact && y < 8) compact = false;
+    header.classList.toggle("is-scrolled", compact);
+  }
+  applyHeader();
+  window.addEventListener("scroll", function () {
+    if (!ticking) { ticking = true; requestAnimationFrame(applyHeader); }
+  }, { passive: true });
 
   var year = document.querySelector("[data-year]");
   if (year) year.textContent = new Date().getFullYear();

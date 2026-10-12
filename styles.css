@@ -74,23 +74,31 @@ img { max-width: 100%; display: block; }
 .skip:focus { top: 12px; }
 
 /* ================= Header ================= */
-/* Full-width sticky header */
+/* Full-width fixed header. It sits outside the page flow, so shrinking it
+   never moves the content underneath (that caused the jump/flicker). */
+:root { --header-h: 122px; --header-h-compact: 72px; }
+
+body { padding-top: var(--header-h); }
+
 .top {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 20;
+  height: var(--header-h);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 22px clamp(24px, 4vw, 56px);
+  padding-inline: clamp(24px, 4vw, 56px);
   background: rgb(255 255 255 / 0.88);
   -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid transparent;
-  transition: padding 0.3s var(--ease), border-color 0.3s;
+  transition: height 0.3s var(--ease), border-color 0.3s;
 }
 .top.is-scrolled {
-  padding-block: 10px;
+  height: var(--header-h-compact);
   border-bottom-color: var(--hair);
 }
 
@@ -99,12 +107,15 @@ img { max-width: 100%; display: block; }
   line-height: 0;
   transition: opacity 0.2s;
 }
+/* Scale with transform (GPU) instead of animating height (repaints the SVG every frame) */
 .brand img {
   height: 78px;
   width: auto;
-  transition: height 0.3s var(--ease);
+  transform-origin: left center;
+  transition: transform 0.3s var(--ease);
+  will-change: transform;
 }
-.top.is-scrolled .brand img { height: 52px; }
+.top.is-scrolled .brand img { transform: scale(0.667); }
 .brand:hover { opacity: 0.65; }
 
 .nav { display: flex; gap: clamp(14px, 3vw, 32px); }
