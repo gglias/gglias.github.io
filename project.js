@@ -35,12 +35,21 @@
     return '<section class="pj-sec reveal"><h2>' + esc(s.h) + "</h2>" + body + "</section>";
   }
 
+  // Download icon: an arrow that drops into a tray on hover
+  var DL_ICON =
+    '<svg class="dl-icon" viewBox="0 0 20 20" aria-hidden="true">' +
+      '<g class="dl-arrow"><path d="M10 3v9"/><path d="M6 8.5l4 4 4-4"/></g>' +
+      '<path class="dl-tray" d="M3.5 13v3h13v-3"/>' +
+    "</svg>";
+
   function action(a) {
     var external = /^https?:/.test(a.href);
+    var isDownload = /\.zip(\?|$)/i.test(a.href);
+    var icon = isDownload ? DL_ICON : external ? ' <span aria-hidden="true">↗</span>' : "";
     return (
-      '<a class="pj-btn' + (a.primary ? " is-primary" : "") + '" href="' + esc(a.href) + '"' +
-        (external ? ' target="_blank" rel="noopener"' : "") + ">" +
-        esc(a.label) + (external ? ' <span aria-hidden="true">↗</span>' : "") +
+      '<a class="pj-btn' + (a.primary ? " is-primary" : "") + (isDownload ? " is-download" : "") + '" href="' + esc(a.href) + '"' +
+        (external && !isDownload ? ' target="_blank" rel="noopener"' : "") + ">" +
+        (isDownload ? icon + esc(a.label) : esc(a.label) + icon) +
       "</a>"
     );
   }
