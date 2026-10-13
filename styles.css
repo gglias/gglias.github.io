@@ -1009,12 +1009,14 @@ body { padding-top: var(--header-h); }
   letter-spacing: -0.02em;
 }
 .plugin-link-arrow {
-  margin-left: 10px;
-  font: 500 18px/1 var(--f-ui);
+  margin-left: 12px;
   color: var(--graphite);
-  transition: color 0.2s, transform 0.2s var(--ease);
+  transition: color 0.2s;
 }
-.plugin-link:hover .plugin-link-arrow { color: var(--select); transform: translate(2px, -2px); }
+.plugin-link:hover .plugin-link-arrow,
+.plugin-link:focus-visible .plugin-link-arrow { color: var(--select); }
+.plugin-link:hover .ext-arrow,
+.plugin-link:focus-visible .ext-arrow { animation: extOut 0.7s var(--ease); }
 
 @media (max-width: 680px) {
   .expertise { grid-template-columns: 1fr; }
