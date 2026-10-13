@@ -1239,7 +1239,9 @@ body { padding-top: var(--header-h); }
 }
 
 @media (max-width: 680px) {
-  .nav a:not([href$="#work"]):not([href$="#contact"]) { display: none; }
+  /* all four links stay visible on phones, just tighter */
+  .nav { gap: 14px; }
+  .nav a { font-size: 13.5px; padding: 8px 0; }
   .grid { grid-template-columns: 1fr; }
   .card.is-wide .shot { aspect-ratio: 4 / 3; }
   .m-hero-row { grid-template-columns: 1fr; }
@@ -1261,4 +1263,10 @@ body { padding-top: var(--header-h); }
   }
   .reveal,
   .card { opacity: 1; transform: none; }
+}
+
+/* Very small phones: keep all four menu links on one line */
+@media (max-width: 360px) {
+  .nav { gap: 10px; }
+  .nav a { font-size: 13px; }
 }
