@@ -13,6 +13,7 @@
  * draft    : true = shown when you preview locally, hidden on github.io
  *
  * Project page (project.html?p=<slug>) — shown when a project has `slug` and `sections`:
+ * page     : false = no project page: the card opens `link` directly
  * slug     : short id used in the URL
  * notice   : optional highlighted note under the intro (e.g. beta status)
  * actions  : buttons at the top of the page: [{ label, href, primary }]
@@ -29,9 +30,9 @@ window.PROJECTS = [
     summary:
       "The Smartup website, in English and Greek. Built on Elementor with WPML, self-hosted fonts and Cloudflare in front, plus a looping 3D hero made in Blender.",
     tags: ["Figma", "WordPress", "Elementor", "WPML", "Blender"],
-    image: "assets/smartup-logo.svg",
+    image: "assets/smartup-logo-light.svg",
     fit: "logo",
-    bg: "radial-gradient(90% 80% at 0% 0%, rgba(70,233,212,0.45), transparent 70%), radial-gradient(90% 80% at 100% 100%, rgba(4,39,39,0.12), transparent 70%), linear-gradient(135deg, #effdfb, #e2f6f3)",
+    bg: "radial-gradient(70% 70% at 15% 10%, rgba(70,233,212,0.35), transparent 70%), radial-gradient(80% 80% at 100% 100%, rgba(13,80,74,0.55), transparent 70%), linear-gradient(135deg, #0c1a19, #071211)",
     link: "https://smartupweb.com",
     wide: true,
     actions: [{ label: "Visit smartupweb.com", href: "https://smartupweb.com", primary: true }],

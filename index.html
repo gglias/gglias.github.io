@@ -1,280 +1,565 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-accent="ember">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Greg — Senior Product Designer</title>
+  <title>Greg Glias — Senior Product Designer</title>
   <meta name="description" content="Greg Glias — business-minded Senior Product Designer with 15+ years and 100+ projects across UI/UX, web/mobile design and branding. Designed in Figma, built in WordPress." />
-  <meta property="og:title" content="Greg — Senior Product Designer" />
+  <meta property="og:title" content="Greg Glias — Senior Product Designer" />
   <meta property="og:description" content="I design it in Figma. Then I build it in WordPress." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://gglias.github.io/" />
+  <meta property="og:site_name" content="Greg Glias" />
+  <meta property="og:image" content="https://gglias.github.io/assets/og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Greg Glias, Senior Product Designer: I design it in Figma. Then I build it in WordPress." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://gglias.github.io/assets/og.jpg" />
+  <meta name="theme-color" content="#09090a" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&family=Inter:opsz,wght@14..32,400..600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=20261014f" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Geist+Mono:wght@400;500&family=Inter:ital,opsz,wght@0,14..32,400..600;1,14..32,400..600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=v3d" />
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
 </head>
 <body>
   <a class="skip" href="#work">Skip to work</a>
 
-  <header class="top" data-header>
-    <a class="brand" href="/" aria-label="Greg — home">
-      <img class="brand-full" src="assets/logo.svg" alt="" width="69" height="78" />
-      <img class="brand-mono" src="assets/gg.svg" alt="" width="49" height="40" />
-    </a>
-    <nav class="nav" aria-label="Main">
-      <a href="#work">Work</a>
-      <a href="#process">Process</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <button class="burger" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Open menu" data-burger>
-      <span></span><span></span>
-    </button>
-  </header>
+  <!-- Ambient light behind everything -->
+  <div class="glow" aria-hidden="true"><span class="glow-a"></span><span class="glow-b"></span></div>
 
-  <!-- Mobile menu: full height, opened by the burger -->
-  <div class="mnav" id="mnav" aria-hidden="true" data-mnav>
-    <nav class="mnav-links" aria-label="Mobile">
-      <a class="mnav-link" href="#work">Work</a>
-      <a class="mnav-link" href="#process">Process</a>
-      <a class="mnav-link" href="#about">About</a>
-      <a class="mnav-link" href="#contact">Contact</a>
-    </nav>
-    <div class="mnav-foot">
-      <a href="mailto:gglias.pro@gmail.com">gglias.pro@gmail.com</a>
-      <a href="https://github.com/gglias">GitHub</a>
-    </div>
+
+  <div class="shell">
+    <!-- ================= Profile: a Figma-style properties panel (sticky on desktop) ================= -->
+    <aside class="profile" aria-label="Profile">
+      <div class="panel-head">
+        <a class="profile-mark" href="#intro" aria-label="Greg Glias — back to top">
+          <img src="assets/gg-light.svg" alt="" width="40" height="33" />
+        </a>
+        <span class="panel-path" aria-hidden="true">
+          <svg viewBox="0 0 16 16"><path d="M5 2v12M11 2v12M2 5h12M2 11h12"/></svg>Greg Glias
+        </span>
+      </div>
+
+      <!-- Portrait: a Figma frame around the photo -->
+      <figure class="portrait" data-portrait>
+        <span class="portrait-label" aria-hidden="true">Portrait</span>
+        <div class="portrait-img">
+          <img class="portrait-photo" src="assets/portrait.jpg" alt="Portrait of Greg Glias" width="760" height="821" />
+        </div>
+        <span class="portrait-size" aria-hidden="true" data-portrait-size></span>
+      </figure>
+
+      <div class="profile-id">
+        <h2 class="profile-name">Greg Glias</h2>
+        <p class="profile-role">Senior Product Designer</p>
+      </div>
+
+      <section class="panel-sec" aria-labelledby="props-title">
+        <h3 class="panel-title" id="props-title">Properties</h3>
+        <dl class="props">
+          <div><dt>Status</dt><dd><span class="status"><i aria-hidden="true"></i>Available for new projects</span></dd></div>
+          <div><dt>Based in</dt><dd>Thessaloniki, GR</dd></div>
+          <div><dt>Local time</dt><dd data-clock><time>--:--</time></dd></div>
+          <div><dt>Experience</dt><dd>15+ years</dd></div>
+          <div><dt>Languages</dt><dd>Greek, English</dd></div>
+        </dl>
+      </section>
+
+      <section class="panel-sec" aria-labelledby="links-title">
+        <h3 class="panel-title" id="links-title">Contact</h3>
+        <div class="mail-row">
+          <a class="profile-mail" href="mailto:gglias.pro@gmail.com">gglias.pro@gmail.com</a>
+          <button type="button" class="copy-btn" data-copy="gglias.pro@gmail.com" aria-label="Copy email address">
+            <svg viewBox="0 0 20 20" aria-hidden="true"><rect x="7" y="7" width="9.5" height="9.5" rx="2"/><path d="M13 7V5.5A2 2 0 0 0 11 3.5H5.5a2 2 0 0 0-2 2V11a2 2 0 0 0 2 2H7"/></svg>
+          </button>
+          <span class="copy-tip" role="status" aria-live="polite" data-copy-tip></span>
+        </div>
+
+      <ul class="socials" aria-label="Elsewhere">
+        <li><a href="https://github.com/gglias" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5"/></svg>
+        </a></li>
+        <li><a href="https://www.linkedin.com/in/gglias/" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11H3zM9.5 9.75h3.8v1.5h.06c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.77 2.5 4.77 5.75v5.7h-4v-5.05c0-1.2-.02-2.75-1.7-2.75-1.7 0-1.95 1.3-1.95 2.66v5.14h-3.75z"/></svg>
+        </a></li>
+        <li><a href="https://www.behance.net/gglias" target="_blank" rel="noopener" aria-label="Behance">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M8.2 11.4c1-.5 1.6-1.3 1.6-2.5C9.8 6.6 8.1 6 6.1 6H0v12.3h6.3c2.3 0 4.5-1.1 4.5-3.7 0-1.6-.8-2.8-2.6-3.2zM2.7 8.1h2.7c1 0 2 .2 2 1.4 0 1.1-.8 1.5-1.8 1.5H2.7zm3 8.1H2.7v-3.4h3.1c1.2 0 2.1.5 2.1 1.8 0 1.3-1 1.6-2.2 1.6zM21.9 13.8c0-2.7-1.6-4.9-4.4-4.9-2.8 0-4.7 2.1-4.7 4.8 0 2.8 1.8 4.8 4.7 4.8 2.2 0 3.6-1 4.3-3.1h-2.2c-.2.8-1.2 1.2-2 1.2-1.5 0-2.3-.9-2.3-2.4h6.6zm-6.6-1.1c.1-1.2.9-2 2.2-2 1.2 0 1.8.7 2 2zM15.2 6.9h5.2v1.3h-5.2z"/></svg>
+        </a></li>
+        <li><a href="https://www.figma.com/@gregglias" target="_blank" rel="noopener" aria-label="Figma">
+          <svg viewBox="0 0 38 57" aria-hidden="true"><path fill="currentColor" d="M19 0H9.5a9.5 9.5 0 0 0 0 19H19zM19 0h9.5a9.5 9.5 0 0 1 0 19H19zM19 19H9.5a9.5 9.5 0 0 0 0 19H19z"/><circle fill="currentColor" cx="28.5" cy="28.5" r="9.5"/><path fill="currentColor" d="M9.5 38H19v9.5A9.5 9.5 0 1 1 9.5 38z"/></svg>
+        </a></li>
+      </ul>
+      </section>
+
+      <a class="profile-cta" href="mailto:gglias.pro@gmail.com">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2.5" y="4.5" width="15" height="11" rx="2"/><path d="m3 6 7 5 7-5"/></svg>
+        Start a project
+      </a>
+    </aside>
+
+    <!-- ================= Content ================= -->
+    <main class="content" id="top">
+
+      <!-- Intro -->
+      <section class="hero" id="intro" data-section aria-labelledby="hero-title">
+        <div class="hero-meta">
+          <span class="eyebrow">Introduction</span>
+        </div>
+
+        <div class="frame" data-frame>
+          <span class="frame-label" aria-hidden="true">Hero / Desktop</span>
+          <h1 class="hero-title" id="hero-title">
+            <span class="line"><span>I design it in <span class="brandword"><svg class="tool-icon" viewBox="0 0 38 57" aria-hidden="true" focusable="false"><path fill="#F24E1E" d="M19 0H9.5a9.5 9.5 0 0 0 0 19H19z"/><path fill="#FF7262" d="M19 0h9.5a9.5 9.5 0 0 1 0 19H19z"/><path fill="#A259FF" d="M19 19H9.5a9.5 9.5 0 0 0 0 19H19z"/><circle fill="#1ABCFE" cx="28.5" cy="28.5" r="9.5"/><path fill="#0ACF83" d="M9.5 38H19v9.5A9.5 9.5 0 1 1 9.5 38z"/></svg>Figma.</span></span></span>
+            <span class="line"><span>Then I build it in</span></span>
+            <span class="line"><span><span class="brandword"><svg class="tool-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="#21759B" d="M21.469 6.825c.84 1.537 1.318 3.3 1.318 5.175 0 3.979-2.156 7.456-5.363 9.325l3.295-9.527c.615-1.54.82-2.771.82-3.864 0-.405-.026-.78-.07-1.11m-7.981.105c.647-.03 1.232-.105 1.232-.105.582-.075.514-.93-.067-.899 0 0-1.755.135-2.88.135-1.064 0-2.85-.15-2.85-.15-.585-.03-.661.855-.075.885 0 0 .54.061 1.125.09l1.68 4.605-2.37 7.08L5.354 6.9c.649-.03 1.234-.1 1.234-.1.585-.075.516-.93-.065-.896 0 0-1.746.138-2.874.138-.2 0-.438-.008-.69-.015C4.911 3.15 8.235 1.215 12 1.215c2.809 0 5.365 1.072 7.286 2.833-.046-.003-.091-.009-.141-.009-1.06 0-1.812.923-1.812 1.914 0 .89.513 1.643 1.06 2.531.411.72.89 1.643.89 2.977 0 .915-.354 1.994-.821 3.479l-1.075 3.585-3.9-11.61.001.014zM12 22.784c-1.059 0-2.081-.153-3.048-.437l3.237-9.406 3.315 9.087c.024.053.05.101.078.149-1.12.393-2.325.609-3.582.609M1.211 12c0-1.564.336-3.05.935-4.39L7.29 21.709C3.694 19.96 1.212 16.271 1.211 12M12 0C5.385 0 0 5.385 0 12s5.385 12 12 12 12-5.385 12-12S18.615 0 12 0"/></svg>WordPress.</span></span></span>
+          </h1>
+          <span class="handle h-tl" aria-hidden="true"></span>
+          <span class="handle h-tr" aria-hidden="true"></span>
+          <span class="handle h-bl" aria-hidden="true"></span>
+          <span class="handle h-br" aria-hidden="true"></span>
+          <span class="size" aria-hidden="true" data-size>0 × 0</span>
+          <!-- Hint: a Mac hand shows the corner can be dragged (main.js) -->
+          <span class="resize-hint" aria-hidden="true" data-resize-hint>
+            <span class="hint-pulse"></span>
+            <img class="hint-hand" src="assets/hand-glove.svg" width="28" height="32" alt="" />
+            <span class="hint-tip">Drag to resize</span>
+          </span>
+        </div>
+
+        <div class="hero-body">
+          <div class="hero-copy">
+            <p class="intro">
+              Business-driven Product Designer &amp; Product Owner with 15+ years of experience
+              and 100+ delivered digital products. I connect user-centred UX/UI with business
+              strategy, for B2B/B2C SaaS, web and mobile, and I take it all the way to production.
+            </p>
+            <ul class="pills" aria-label="What I do">
+              <li>UX/UI design</li>
+              <li>Design systems</li>
+              <li>Product ownership</li>
+              <li>SaaS · web · mobile</li>
+              <li>WordPress builds</li>
+            </ul>
+          </div>
+
+          <!-- Stickers: drag them around, like objects on a Figma canvas -->
+          <div class="stickers" data-stickers aria-label="Drag the stickers around">
+            <div class="sticker sticker--ring sticker--clear" style="--x:58%;--y:2%;--r:-8deg" data-sticker data-name="Design systems">
+              <svg viewBox="0 0 120 120" aria-hidden="true">
+                <defs><path id="ring" d="M60 60m-44 0a44 44 0 1 1 88 0a44 44 0 1 1-88 0"/></defs>
+                <circle cx="60" cy="60" r="58" class="ring-bg"/>
+                <text class="ring-text"><textPath href="#ring">DESIGN SYSTEMS • TOKENS • COMPONENTS •</textPath></text>
+                <g transform="translate(47 41) scale(0.68)"><path fill="#F24E1E" d="M19 0H9.5a9.5 9.5 0 0 0 0 19H19z"/><path fill="#FF7262" d="M19 0h9.5a9.5 9.5 0 0 1 0 19H19z"/><path fill="#A259FF" d="M19 19H9.5a9.5 9.5 0 0 0 0 19H19z"/><circle fill="#1ABCFE" cx="28.5" cy="28.5" r="9.5"/><path fill="#0ACF83" d="M9.5 38H19v9.5A9.5 9.5 0 1 1 9.5 38z"/></g>
+              </svg>
+              <span class="gloss" aria-hidden="true"></span>
+              <span class="sr-only">Design systems</span>
+            </div>
+            <div class="sticker sticker--tag" style="--x:4%;--y:18%;--r:-7deg" data-sticker data-name="WordPress">
+              <span class="tag-hole" aria-hidden="true"></span>WordPress<br />builds ©26
+            </div>
+            <div class="sticker sticker--label" style="--x:18%;--y:62%;--r:5deg" data-sticker data-name="Figma to code">
+              Figma <span aria-hidden="true">→</span> production
+            </div>
+            <div class="sticker sticker--stamp" style="--x:66%;--y:66%;--r:9deg" data-sticker data-name="UI/UX">
+              UI<span class="slash">/</span>UX
+            </div>
+          </div>
+        </div>
+
+        <!-- Figures that are already stated on the site -->
+        <dl class="stats">
+          <div class="stat"><dt>Years designing</dt><dd>15<span>+</span></dd></div>
+          <div class="stat"><dt>Products delivered</dt><dd>100<span>+</span></dd></div>
+          <div class="stat stat--accent"><dt>Plugins built</dt><p>4 for WordPress, 1 for Figma</p><dd>5</dd></div>
+        </dl>
+      </section>
+
+      <!-- Designed in Figma, built in WordPress (lab.js) — stays permanently -->
+      <section class="block lab" aria-labelledby="lab-title">
+        <div class="block-head">
+          <span class="eyebrow">How it comes together</span>
+          <h2 id="lab-title" class="h2">Designed in Figma,<br /><span class="dim">built in WordPress.</span></h2>
+        </div>
+
+        <div class="lab-card">
+          <div class="duo" data-lab>
+            <figure class="pane">
+              <div class="pane-bar pane-bar--figma">
+                <svg class="bar-icon" viewBox="0 0 38 57" aria-hidden="true"><path fill="#F24E1E" d="M19 0H9.5a9.5 9.5 0 0 0 0 19H19z"/><path fill="#FF7262" d="M19 0h9.5a9.5 9.5 0 0 1 0 19H19z"/><path fill="#A259FF" d="M19 19H9.5a9.5 9.5 0 0 0 0 19H19z"/><circle fill="#1ABCFE" cx="28.5" cy="28.5" r="9.5"/><path fill="#0ACF83" d="M9.5 38H19v9.5A9.5 9.5 0 1 1 9.5 38z"/></svg>
+                <span class="bar-title">Logo</span>
+                <span class="bar-meta">Design</span>
+              </div>
+              <div class="pane-canvas">
+                <div class="art">
+                  <svg class="art-mark" viewBox="0 0 38 57" aria-hidden="true"><path fill="#F24E1E" d="M19 0H9.5a9.5 9.5 0 0 0 0 19H19z"/><path fill="#FF7262" d="M19 0h9.5a9.5 9.5 0 0 1 0 19H19z"/><path fill="#A259FF" d="M19 19H9.5a9.5 9.5 0 0 0 0 19H19z"/><circle fill="#1ABCFE" cx="28.5" cy="28.5" r="9.5"/><path fill="#0ACF83" d="M9.5 38H19v9.5A9.5 9.5 0 1 1 9.5 38z"/></svg>
+                  <span class="art-word">Figma</span>
+                  <span class="art-sel" data-art-sel aria-hidden="true">
+                    <span class="sel-label">Logo</span>
+                    <span class="handle h-tl"></span><span class="handle h-tr"></span>
+                    <span class="handle h-bl"></span><span class="handle h-br"></span>
+                    <span class="sel-size" data-art-size></span>
+                  </span>
+                </div>
+              </div>
+              <figcaption class="sr-only">The Figma logo and wordmark as a design in Figma.</figcaption>
+            </figure>
+
+            <div class="duo-link" aria-hidden="true">→</div>
+
+            <figure class="pane pane--wp" data-builder>
+              <div class="pane-bar pane-bar--wp">
+                <svg class="bar-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M21.469 6.825c.84 1.537 1.318 3.3 1.318 5.175 0 3.979-2.156 7.456-5.363 9.325l3.295-9.527c.615-1.54.82-2.771.82-3.864 0-.405-.026-.78-.07-1.11m-7.981.105c.647-.03 1.232-.105 1.232-.105.582-.075.514-.93-.067-.899 0 0-1.755.135-2.88.135-1.064 0-2.85-.15-2.85-.15-.585-.03-.661.855-.075.885 0 0 .54.061 1.125.09l1.68 4.605-2.37 7.08L5.354 6.9c.649-.03 1.234-.1 1.234-.1.585-.075.516-.93-.065-.896 0 0-1.746.138-2.874.138-.2 0-.438-.008-.69-.015C4.911 3.15 8.235 1.215 12 1.215c2.809 0 5.365 1.072 7.286 2.833-.046-.003-.091-.009-.141-.009-1.06 0-1.812.923-1.812 1.914 0 .89.513 1.643 1.06 2.531.411.72.89 1.643.89 2.977 0 .915-.354 1.994-.821 3.479l-1.075 3.585-3.9-11.61.001.014zM12 22.784c-1.059 0-2.081-.153-3.048-.437l3.237-9.406 3.315 9.087c.024.053.05.101.078.149-1.12.393-2.325.609-3.582.609M1.211 12c0-1.564.336-3.05.935-4.39L7.29 21.709C3.694 19.96 1.212 16.271 1.211 12M12 0C5.385 0 0 5.385 0 12s5.385 12 12 12 12-5.385 12-12S18.615 0 12 0"/></svg>
+                <span class="bar-title">Home</span>
+                <span class="el-chip">Elementor</span>
+                <span class="el-publish" data-publish>Publish</span>
+              </div>
+              <div class="el-body">
+                <div class="el-panel" aria-hidden="true">
+                  <p class="el-panel-title">Widgets</p>
+                  <div class="el-tile" data-tile="shape">
+                    <svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 2H5a6 6 0 0 0 0 12h3z" transform="translate(2 0)"/></svg>Shape
+                  </div>
+                  <div class="el-tile" data-tile="circle">
+                    <svg viewBox="0 0 16 16"><circle fill="currentColor" cx="8" cy="8" r="6"/></svg>Circle
+                  </div>
+                  <div class="el-tile" data-tile="heading">
+                    <svg viewBox="0 0 16 16"><path fill="currentColor" d="M2 2h12v3h-2V4H9v8h2v2H5v-2h2V4H4v1H2z"/></svg>Heading
+                  </div>
+                </div>
+                <div class="el-canvas">
+                  <div class="art">
+                    <svg class="art-mark" viewBox="0 0 38 57" aria-hidden="true">
+                      <path class="build-piece" data-tile="shape" fill="#F24E1E" d="M19 0H9.5a9.5 9.5 0 0 0 0 19H19z"/>
+                      <path class="build-piece" data-tile="shape" fill="#FF7262" d="M19 0h9.5a9.5 9.5 0 0 1 0 19H19z"/>
+                      <path class="build-piece" data-tile="shape" fill="#A259FF" d="M19 19H9.5a9.5 9.5 0 0 0 0 19H19z"/>
+                      <circle class="build-piece" data-tile="circle" fill="#1ABCFE" cx="28.5" cy="28.5" r="9.5"/>
+                      <path class="build-piece" data-tile="shape" fill="#0ACF83" d="M9.5 38H19v9.5A9.5 9.5 0 1 1 9.5 38z"/>
+                    </svg>
+                    <span class="art-word build-piece" data-tile="heading">Figma</span>
+                  </div>
+                  <div class="el-outline" data-outline aria-hidden="true"><span class="el-handle">✎</span></div>
+                  <div class="el-toast" data-toast aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M12 0C5.385 0 0 5.385 0 12s5.385 12 12 12 12-5.385 12-12S18.615 0 12 0zm-1.6 17.2-4.6-4.6 1.7-1.7 2.9 2.9 6.2-6.2 1.7 1.7z"/></svg>
+                    Published on WordPress
+                  </div>
+                </div>
+              </div>
+              <svg class="el-cursor" data-cursor viewBox="0 0 24 30" aria-hidden="true"><path class="c-arrow" d="M2 2v22.5l5.6-5.3 3.7 8.4 3.8-1.6-3.6-8.2h7.7z" fill="#000" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/><g class="c-hand" transform="translate(-3.8 -0.35)" stroke-linejoin="round" stroke-linecap="round"><path fill="none" stroke="#fff" stroke-width="3.4" d="M7.2 15.6 4.3 4.9a2.15 2.15 0 0 1 4.1-1.1l2.9 7.6a1.8 1.8 0 0 1 3.6.1l.05.4a1.8 1.8 0 0 1 3.55.5l.05.5a1.65 1.65 0 0 1 3.25.7l.1 5.6c0 2.2-.9 3.8-2.3 4.9v2.6h-6.5l-.9-1.3-.9 1.3H9.5v-2.5c-.9-.6-1.6-1.4-2.2-2.4l-3.7-4.4c-.7-.9-.5-2.1.5-2.6.9-.45 1.9-.15 2.5.6z"/><path fill="#fff" stroke="#000" stroke-width="1.5" d="M7.2 15.6 6.7 4.4a2.1 2.1 0 0 1 4.2-.2l.4 7.2a1.8 1.8 0 0 1 3.6.1l.05.4a1.8 1.8 0 0 1 3.55.5l.05.5a1.65 1.65 0 0 1 3.25.7l.1 5.6c0 2.2-.9 3.8-2.3 4.9v2.6h-6.5l-.9-1.3-.9 1.3H9.5v-2.5c-.9-.6-1.6-1.4-2.2-2.4l-3.7-4.4c-.7-.9-.5-2.1.5-2.6.9-.45 1.9-.15 2.5.6z"/><path fill="none" stroke="#000" stroke-width="1.45" d="M12.6 17.3v4.2M15.2 17.5v4.1M17.8 17.7v3.9"/></g></svg>
+              <div class="el-ghost" data-ghost aria-hidden="true"></div>
+              <figcaption class="sr-only">The same logo rebuilt with Elementor widgets in WordPress, then published.</figcaption>
+            </figure>
+          </div>
+          <button type="button" class="lab-replay" data-replay>Replay</button>
+        </div>
+      </section>
+
+      <!-- Toolbox marquee -->
+      <section class="toolbox" aria-label="Tools I use">
+        <p class="toolbox-label">Daily toolkit</p>
+        <!-- Two rows that scroll in opposite directions -->
+        <div class="marquees">
+          <div class="marquee" data-marquee>
+            <ul class="marquee-track">
+              <li style="--c:#a259ff">Figma</li>
+              <li style="--c:#ffc700">FigJam</li>
+              <li style="--c:#31a8ff">Photoshop</li>
+              <li style="--c:#ff9a00">Illustrator</li>
+              <li style="--c:#e87d0d">Blender</li>
+              <li style="--c:#ffffff">Procreate</li>
+              <li style="--c:#7b61ff">Project Neo</li>
+              <li style="--c:#3858e9">WordPress</li>
+              <li style="--c:#d63384">Elementor</li>
+              <li style="--c:#33b3b3">WPML</li>
+              <li style="--c:#8892bf">PHP</li>
+            </ul>
+          </div>
+          <div class="marquee marquee--reverse" data-marquee>
+            <ul class="marquee-track">
+              <li style="--c:#d97757">Claude Code</li>
+              <li style="--c:#f7df1e">JavaScript</li>
+              <li style="--c:#2965f1">CSS</li>
+              <li style="--c:#f05033">Git</li>
+              <li style="--c:#ffffff">GitHub</li>
+              <li style="--c:#f38020">Cloudflare</li>
+              <li style="--c:#ff6c2c">cPanel</li>
+              <li style="--c:#52bbe6">Plesk</li>
+              <li style="--c:#ffffff">Notion</li>
+              <li style="--c:#2684ff">Jira</li>
+              <li style="--c:#e01e5a">Slack</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Work -->
+      <section class="block work" id="work" data-section aria-labelledby="work-title">
+        <!-- Heading like a Figma page: name + frame count; the filters are the page tabs -->
+        <div class="block-head work-top">
+          <span class="eyebrow">Work</span>
+          <h2 id="work-title" class="h2 work-title">Selected work <span class="frame-count" data-count></span></h2>
+        </div>
+        <div class="page-tabs" role="group" aria-label="Filter projects">
+          <button type="button" class="page-tab" data-filter="all" aria-pressed="true">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 2v12M11 2v12M2 5h12M2 11h12"/></svg>All <span class="tab-n" data-n="all"></span>
+          </button>
+          <button type="button" class="page-tab" data-filter="website" aria-pressed="false">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 2v12M11 2v12M2 5h12M2 11h12"/></svg>Websites <span class="tab-n" data-n="website"></span>
+          </button>
+          <button type="button" class="page-tab" data-filter="plugin" aria-pressed="false">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 2v12M11 2v12M2 5h12M2 11h12"/></svg>Plugins <span class="tab-n" data-n="plugin"></span>
+          </button>
+          <button type="button" class="page-tab" data-filter="case-study" aria-pressed="false">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 2v12M11 2v12M2 5h12M2 11h12"/></svg>Case studies <span class="tab-n" data-n="case-study"></span>
+          </button>
+        </div>
+        <div class="grid" data-grid></div>
+        <p class="empty" data-empty hidden>Nothing here yet. Case studies are on the way.</p>
+      </section>
+
+      <!-- Experience (from the CV). Each row opens to show the highlights. -->
+      <section class="block experience" id="experience" data-section aria-labelledby="exp-title">
+        <div class="block-head">
+          <span class="eyebrow">Experience</span>
+          <h2 id="exp-title" class="h2">15+ years of building<br /><span class="dim">design teams and the products they ship.</span></h2>
+        </div>
+        <ol class="xp" data-xp>
+          <li class="xp-item is-open">
+            <button type="button" class="xp-row" aria-expanded="true" aria-controls="xp-1">
+              <span class="xp-co">Smartup Innovations PCC</span>
+              <span class="xp-role">Senior Product Designer</span>
+              <span class="xp-years">2025 — Now</span>
+              <span class="xp-plus" aria-hidden="true"></span>
+            </button>
+            <ul class="xp-detail" id="xp-1">
+              <li>Led the UX/UI overhaul and design strategy for complex mobile apps and responsive platforms, working directly with stakeholders.</li>
+              <li>Scaled the UX/UI design department of a 15-person company and introduced agile design workflows that sped up delivery.</li>
+              <li>Designed and built front-end experiences on custom WordPress setups, for a smooth design-to-development handoff.</li>
+              <li>Set up and maintain component-driven design systems in Figma across all products.</li>
+            </ul>
+          </li>
+          <li class="xp-item">
+            <button type="button" class="xp-row" aria-expanded="false" aria-controls="xp-2">
+              <span class="xp-co">HumanTwo Design Agency</span>
+              <span class="xp-role">Senior Product Designer &amp; Co-Founder</span>
+              <span class="xp-years">2020 — 2024</span>
+              <span class="xp-plus" aria-hidden="true"></span>
+            </button>
+            <ul class="xp-detail" id="xp-2">
+              <li>Co-founded and ran a digital design agency: product strategy, client consulting and end-to-end design for 50+ e-commerce and web applications.</li>
+              <li>Product Owner for enterprise clients, turning unclear business requirements into wireframes, user flows and interactive prototypes.</li>
+              <li>Designed data-driven marketing ecosystems: visual assets, automated newsletter workflows (SendGrid) and fast interfaces.</li>
+              <li>Kept clients coming back through continuous iteration, usability audits and post-launch optimization.</li>
+            </ul>
+          </li>
+          <li class="xp-item">
+            <button type="button" class="xp-row" aria-expanded="false" aria-controls="xp-3">
+              <span class="xp-co">Freights Exchange Platform</span>
+              <span class="xp-role">Lead Product Designer</span>
+              <span class="xp-years">2017 — 2020</span>
+              <span class="xp-plus" aria-hidden="true"></span>
+            </button>
+            <ul class="xp-detail" id="xp-3">
+              <li>Built the company’s design department from the ground up: UX/UI standards, research methods and hiring the core team.</li>
+              <li>Designed complex B2B workflows for a pan-European logistics SaaS, simplifying data-dense dashboards for freight and transport companies.</li>
+              <li>Designed investor decks and product prototypes that helped secure funding rounds.</li>
+              <li>Led design work that earned multiple innovation awards in European logistics tech.</li>
+            </ul>
+          </li>
+          <li class="xp-item">
+            <div class="xp-row xp-row--static">
+              <span class="xp-co">Freelance</span>
+              <span class="xp-role">Graphic &amp; Digital Designer</span>
+              <span class="xp-years">Before 2017</span>
+            </div>
+          </li>
+        </ol>
+
+        <div class="edu">
+          <span class="eyebrow">Education</span>
+          <ul class="edu-list">
+            <li><span>Diploma in Computer Network Technology</span><span>DELTA 360 Institute, Thessaloniki</span></li>
+            <li><span>Logistics &amp; Supply Chain Management</span><span>Public IEK Thermi, Thessaloniki</span></li>
+            <li><span>Continuous education</span><span>Advanced UX/UI design, vector illustration and WordPress engineering courses</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Expertise: one open at a time -->
+      <section class="block expertise" id="expertise" data-section aria-labelledby="ex-title">
+        <div class="ex-card">
+          <span class="eyebrow">Core expertise</span>
+          <h2 id="ex-title" class="sr-only">Core expertise</h2>
+          <div class="ex-list" data-ex>
+            <div class="ex-item is-open">
+              <h3><button type="button" aria-expanded="true" aria-controls="ex-1">
+                <span class="ex-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.3" fill="currentColor"/></svg></span>
+                Product strategy
+              </button></h3>
+              <ul id="ex-1" class="ex-detail">
+                <li>Product ownership and user research</li>
+                <li>Information architecture and user flows</li>
+                <li>Agile/Scrum and data-driven decisions</li>
+              </ul>
+            </div>
+            <div class="ex-item">
+              <h3><button type="button" aria-expanded="false" aria-controls="ex-2">
+                <span class="ex-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2.8 15.2 6 12 9.2 8.8 6zM6 8.8 9.2 12 6 15.2 2.8 12zM18 8.8l3.2 3.2-3.2 3.2-3.2-3.2zM12 14.8l3.2 3.2-3.2 3.2L8.8 18z"/></svg></span>
+                UX/UI &amp; design systems
+              </button></h3>
+              <ul id="ex-2" class="ex-detail">
+                <li>Wireframes and high-fidelity prototypes</li>
+                <li>Scalable design systems, responsive by default</li>
+                <li>Accessibility (WCAG) and usability testing</li>
+              </ul>
+            </div>
+            <div class="ex-item">
+              <h3><button type="button" aria-expanded="false" aria-controls="ex-3">
+                <span class="ex-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 4.5l-3 15"/></svg></span>
+                Design to code
+              </button></h3>
+              <ul id="ex-3" class="ex-detail">
+                <li>WordPress and Elementor builds, custom plugins</li>
+                <li>Front-end customization in HTML and CSS</li>
+                <li>Git and a clean design-to-code handoff</li>
+                <li>AI-assisted development with Claude Code</li>
+              </ul>
+            </div>
+            <div class="ex-item">
+              <h3><button type="button" aria-expanded="false" aria-controls="ex-4">
+                <span class="ex-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 19.5c0-3.3 2.7-5.6 6-5.6s6 2.3 6 5.6"/><circle cx="17" cy="9" r="2.6"/><path d="M16.6 13.9c2.6.2 4.4 2.2 4.4 5"/></svg></span>
+                Team leadership
+              </button></h3>
+              <ul id="ex-4" class="ex-detail">
+                <li>Design departments set up from scratch</li>
+                <li>Cross-functional team leadership</li>
+                <li>Hiring and growing the core team</li>
+              </ul>
+            </div>
+          </div>
+          <div class="ex-foot">
+            <span>Greek &amp; English · Remote</span>
+            <a href="#contact">Get in touch <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Process: a real sequence, so it's numbered -->
+      <section class="block process" id="process" data-section aria-labelledby="process-title">
+        <div class="block-head">
+          <span class="eyebrow">Process</span>
+          <h2 id="process-title" class="h2">How I work</h2>
+        </div>
+        <ol class="steps">
+          <li class="step reveal">
+            <span class="step-no">Step 1</span>
+            <h3>Understand</h3>
+            <p>Talk to the people who’ll use it and map what they need to get done.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step-no">Step 2</span>
+            <h3>Design</h3>
+            <p>Wireframes first, then UI in Figma, built from components that map one-to-one to code.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step-no">Step 3</span>
+            <h3>Prototype</h3>
+            <p>Clickable flows we can test and change before anyone writes a line of code.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step-no">Step 4</span>
+            <h3>Build</h3>
+            <p>WordPress, Elementor and custom plugins where they’re needed. Multilingual from day one.</p>
+          </li>
+        </ol>
+      </section>
+
+      <!-- About -->
+      <section class="block about" id="about" data-section aria-labelledby="about-title">
+        <div class="block-head">
+          <span class="eyebrow">About</span>
+          <h2 id="about-title" class="sr-only">About</h2>
+        </div>
+        <p class="about-lead" data-words>
+          I bridge the gap between user needs, design and technology. Product design in Figma,
+          web development in WordPress, and a product owner’s eye for what the business
+          actually needs.
+        </p>
+        <div class="about-grid">
+          <p class="about-text">
+            I’ve co-founded a design agency, built a design department from the ground up
+            for a pan-European logistics SaaS, and today I design and build products at
+            Smartup in Thessaloniki. What ties it together: design that maximizes ROI, and teams that
+            ship it.
+          </p>
+          <a class="plugin-card" href="https://www.figma.com/community/plugin/1645934997243256853/tokenflow" target="_blank" rel="noopener">
+            <span class="plugin-card-icon" aria-hidden="true"><svg viewBox="0 0 38 57"><path fill="#F24E1E" d="M19 0H9.5a9.5 9.5 0 0 0 0 19H19z"/><path fill="#FF7262" d="M19 0h9.5a9.5 9.5 0 0 1 0 19H19z"/><path fill="#A259FF" d="M19 19H9.5a9.5 9.5 0 0 0 0 19H19z"/><circle fill="#1ABCFE" cx="28.5" cy="28.5" r="9.5"/><path fill="#0ACF83" d="M9.5 38H19v9.5A9.5 9.5 0 1 1 9.5 38z"/></svg></span>
+            <span class="plugin-card-text">
+              <span class="plugin-card-eyebrow">My Figma plugin</span>
+              <span class="plugin-card-name">TokenFlow</span>
+            </span>
+            <span class="arrow-tile" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6 14 14 6M7.5 6H14v6.5"/></svg></span>
+          </a>
+        </div>
+        <dl class="tools">
+          <div><dt>Design</dt><dd>Figma, FigJam, Photoshop, Illustrator, Procreate, Project Neo, Blender</dd></div>
+          <div><dt>Build</dt><dd>WordPress, Elementor, WPML, HTML, CSS, PHP, JavaScript, Claude Code (AI-assisted development)</dd></div>
+          <div><dt>Ship</dt><dd>Git, GitHub, Cloudflare, cPanel, Plesk</dd></div>
+          <div><dt>Collaborate</dt><dd>Notion, Jira, Slack</dd></div>
+        </dl>
+      </section>
+
+      <!-- Contact -->
+      <section class="block contact" id="contact" data-section aria-labelledby="contact-title">
+        <span class="eyebrow">Contact</span>
+        <h2 id="contact-title" class="contact-title">Have something to design or build?</h2>
+        <a class="contact-band" href="mailto:gglias.pro@gmail.com">
+          <span class="contact-band-track" aria-hidden="true">
+            <span>Start a project</span><i></i><span>Start a project</span><i></i><span>Start a project</span><i></i><span>Start a project</span><i></i>
+          </span>
+          <span class="sr-only">Start a project — email gglias.pro@gmail.com</span>
+        </a>
+        <div class="contact-row">
+          <a class="mail" href="mailto:gglias.pro@gmail.com">gglias.pro@gmail.com</a>
+          <ul class="links">
+            <li><a href="https://www.linkedin.com/in/gglias/">LinkedIn</a></li>
+            <li><a href="https://www.behance.net/gglias">Behance</a></li>
+            <li><a href="https://github.com/gglias">GitHub</a></li>
+          </ul>
+        </div>
+      </section>
+
+      <footer class="foot">
+        <span>Designed in Figma, built by hand, hosted on GitHub Pages.</span>
+        <span>© <span data-year>2026</span> Greg Glias</span>
+      </footer>
+    </main>
   </div>
 
-  <main id="top">
-    <!-- Hero: the headline is "selected" like a frame in Figma -->
-    <section class="hero wrap">
-      <div class="frame" data-frame>
-        <span class="frame-label" aria-hidden="true">Hero / Desktop</span>
-        <h1 class="hero-title">
-          <span class="line"><span>I design it in <span class="brandword"><svg class="tool-icon" viewBox="0 0 38 57" aria-hidden="true" focusable="false"><path fill="#F24E1E" d="M19 0H9.5a9.5 9.5 0 0 0 0 19H19z"/><path fill="#FF7262" d="M19 0h9.5a9.5 9.5 0 0 1 0 19H19z"/><path fill="#A259FF" d="M19 19H9.5a9.5 9.5 0 0 0 0 19H19z"/><circle fill="#1ABCFE" cx="28.5" cy="28.5" r="9.5"/><path fill="#0ACF83" d="M9.5 38H19v9.5A9.5 9.5 0 1 1 9.5 38z"/></svg>Figma.</span></span></span>
-          <span class="line"><span>Then I build it</span></span>
-          <span class="line"><span>in <span class="brandword"><svg class="tool-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="#21759B" d="M21.469 6.825c.84 1.537 1.318 3.3 1.318 5.175 0 3.979-2.156 7.456-5.363 9.325l3.295-9.527c.615-1.54.82-2.771.82-3.864 0-.405-.026-.78-.07-1.11m-7.981.105c.647-.03 1.232-.105 1.232-.105.582-.075.514-.93-.067-.899 0 0-1.755.135-2.88.135-1.064 0-2.85-.15-2.85-.15-.585-.03-.661.855-.075.885 0 0 .54.061 1.125.09l1.68 4.605-2.37 7.08L5.354 6.9c.649-.03 1.234-.1 1.234-.1.585-.075.516-.93-.065-.896 0 0-1.746.138-2.874.138-.2 0-.438-.008-.69-.015C4.911 3.15 8.235 1.215 12 1.215c2.809 0 5.365 1.072 7.286 2.833-.046-.003-.091-.009-.141-.009-1.06 0-1.812.923-1.812 1.914 0 .89.513 1.643 1.06 2.531.411.72.89 1.643.89 2.977 0 .915-.354 1.994-.821 3.479l-1.075 3.585-3.9-11.61.001.014zM12 22.784c-1.059 0-2.081-.153-3.048-.437l3.237-9.406 3.315 9.087c.024.053.05.101.078.149-1.12.393-2.325.609-3.582.609M1.211 12c0-1.564.336-3.05.935-4.39L7.29 21.709C3.694 19.96 1.212 16.271 1.211 12M12 0C5.385 0 0 5.385 0 12s5.385 12 12 12 12-5.385 12-12S18.615 0 12 0"/></svg>WordPress.</span></span></span>
-        </h1>
-        <span class="handle h-tl" aria-hidden="true"></span>
-        <span class="handle h-tr" aria-hidden="true"></span>
-        <span class="handle h-bl" aria-hidden="true"></span>
-        <span class="handle h-br" aria-hidden="true"></span>
-        <span class="size" aria-hidden="true" data-size>0 × 0</span>
-      </div>
+  <!-- Figma multiplayer cursor (desktop only, main.js) -->
+  <div class="fig-cursor" aria-hidden="true" data-fig-cursor>
+    <svg viewBox="0 0 24 24"><path d="M4 3.5 19.5 10.3 12.6 12.6 10.3 19.5z"/></svg>
+    <span class="fig-cursor-label" data-fig-label>You</span>
+  </div>
 
-      <div class="hero-foot">
-        <p class="intro">
-          I am a business-minded Senior Product Designer with 15+ years of experience and
-          100+ completed projects spanning UI/UX, web/mobile design, and branding.
-          I don’t just design interfaces; I build digital experiences from concept
-          to production-ready code.
-        </p>
-        <a class="cta" href="#work">See the work <span aria-hidden="true">↓</span></a>
-      </div>
-    </section>
+  <!-- Figma UI3-style toolbar: the site navigation -->
+  <nav class="toolbar" aria-label="Sections (keys 1–7)">
+    <a href="#intro" data-nav="intro" data-key="1"><svg class="tb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11.5 12 5l8 6.5V20h-5v-5H9v5H4z"/></svg><b class="tb-label">Intro</b><span class="tb-tip" aria-hidden="true">Intro <kbd>1</kbd></span></a>
+    <span class="tb-sep" aria-hidden="true"></span>
+    <a href="#work" data-nav="work" data-key="2"><svg class="tb-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg><b class="tb-label">Work</b><span class="tb-tip" aria-hidden="true">Work <kbd>2</kbd></span></a>
+    <a href="#experience" data-nav="experience" data-key="3"><svg class="tb-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="7" width="17" height="12.5" rx="2"/><path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7M3.5 12.5h17"/></svg><b class="tb-label">Experience</b><span class="tb-tip" aria-hidden="true">Experience <kbd>3</kbd></span></a>
+    <a href="#expertise" data-nav="expertise" data-key="4"><svg class="tb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 21 8l-9 5-9-5zM3 12.5l9 5 9-5M3 16.5l9 5 9-5"/></svg><b class="tb-label">Expertise</b><span class="tb-tip" aria-hidden="true">Expertise <kbd>4</kbd></span></a>
+    <a href="#process" data-nav="process" data-key="5"><svg class="tb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18h5v-5h5V8h6M17 5l3 3-3 3"/></svg><b class="tb-label">Process</b><span class="tb-tip" aria-hidden="true">Process <kbd>5</kbd></span></a>
+    <a href="#about" data-nav="about" data-key="6"><svg class="tb-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20c.6-3.8 3.6-6 7.5-6s6.9 2.2 7.5 6"/></svg><b class="tb-label">About</b><span class="tb-tip" aria-hidden="true">About <kbd>6</kbd></span></a>
+    <span class="tb-sep" aria-hidden="true"></span>
+    <a href="#contact" data-nav="contact" data-key="7"><svg class="tb-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="m4 7 8 6 8-6"/></svg><b class="tb-label">Contact</b><span class="tb-tip" aria-hidden="true">Contact <kbd>7</kbd></span></a>
+    <span class="tb-progress" aria-hidden="true"><i data-progress></i></span>
+  </nav>
 
-    <!-- "Designed in Figma, built in WordPress" animation.
-         Lives in lab.js + the LAB block in styles.css. -->
-    <section class="lab wrap" aria-label="Designed in Figma, built in WordPress">
-      <p class="lab-tag">Designed in Figma, built in WordPress</p>
-
-      <div class="duo" data-lab>
-        <!-- Left: the design. Always stays on screen. -->
-        <figure class="pane">
-          <div class="pane-bar pane-bar--figma">
-            <svg class="bar-icon" viewBox="0 0 38 57" aria-hidden="true"><path fill="#F24E1E" d="M19 0H9.5a9.5 9.5 0 0 0 0 19H19z"/><path fill="#FF7262" d="M19 0h9.5a9.5 9.5 0 0 1 0 19H19z"/><path fill="#A259FF" d="M19 19H9.5a9.5 9.5 0 0 0 0 19H19z"/><circle fill="#1ABCFE" cx="28.5" cy="28.5" r="9.5"/><path fill="#0ACF83" d="M9.5 38H19v9.5A9.5 9.5 0 1 1 9.5 38z"/></svg>
-            <span class="bar-title">Logo</span>
-            <span class="bar-meta">Design</span>
-          </div>
-          <div class="pane-canvas">
-            <div class="art">
-              <svg class="art-mark" viewBox="0 0 38 57" aria-hidden="true"><path fill="#F24E1E" d="M19 0H9.5a9.5 9.5 0 0 0 0 19H19z"/><path fill="#FF7262" d="M19 0h9.5a9.5 9.5 0 0 1 0 19H19z"/><path fill="#A259FF" d="M19 19H9.5a9.5 9.5 0 0 0 0 19H19z"/><circle fill="#1ABCFE" cx="28.5" cy="28.5" r="9.5"/><path fill="#0ACF83" d="M9.5 38H19v9.5A9.5 9.5 0 1 1 9.5 38z"/></svg>
-              <span class="art-word">Figma</span>
-              <span class="art-sel" data-art-sel aria-hidden="true">
-                <span class="sel-label">Logo</span>
-                <span class="handle h-tl"></span><span class="handle h-tr"></span>
-                <span class="handle h-bl"></span><span class="handle h-br"></span>
-                <span class="sel-size" data-art-size></span>
-              </span>
-            </div>
-          </div>
-          <figcaption class="sr-only">The Figma logo and wordmark as a design in Figma.</figcaption>
-        </figure>
-
-        <div class="duo-link" aria-hidden="true">→</div>
-
-        <!-- Right: the same logo being built with Elementor widgets in WordPress -->
-        <figure class="pane pane--wp" data-builder>
-          <div class="pane-bar pane-bar--wp">
-            <svg class="bar-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M21.469 6.825c.84 1.537 1.318 3.3 1.318 5.175 0 3.979-2.156 7.456-5.363 9.325l3.295-9.527c.615-1.54.82-2.771.82-3.864 0-.405-.026-.78-.07-1.11m-7.981.105c.647-.03 1.232-.105 1.232-.105.582-.075.514-.93-.067-.899 0 0-1.755.135-2.88.135-1.064 0-2.85-.15-2.85-.15-.585-.03-.661.855-.075.885 0 0 .54.061 1.125.09l1.68 4.605-2.37 7.08L5.354 6.9c.649-.03 1.234-.1 1.234-.1.585-.075.516-.93-.065-.896 0 0-1.746.138-2.874.138-.2 0-.438-.008-.69-.015C4.911 3.15 8.235 1.215 12 1.215c2.809 0 5.365 1.072 7.286 2.833-.046-.003-.091-.009-.141-.009-1.06 0-1.812.923-1.812 1.914 0 .89.513 1.643 1.06 2.531.411.72.89 1.643.89 2.977 0 .915-.354 1.994-.821 3.479l-1.075 3.585-3.9-11.61.001.014zM12 22.784c-1.059 0-2.081-.153-3.048-.437l3.237-9.406 3.315 9.087c.024.053.05.101.078.149-1.12.393-2.325.609-3.582.609M1.211 12c0-1.564.336-3.05.935-4.39L7.29 21.709C3.694 19.96 1.212 16.271 1.211 12M12 0C5.385 0 0 5.385 0 12s5.385 12 12 12 12-5.385 12-12S18.615 0 12 0"/></svg>
-            <span class="bar-title">Home</span>
-            <span class="el-chip">Elementor</span>
-            <span class="el-publish" data-publish>Publish</span>
-          </div>
-          <div class="el-body">
-            <div class="el-panel" aria-hidden="true">
-              <p class="el-panel-title">Widgets</p>
-              <div class="el-tile" data-tile="shape">
-                <svg viewBox="0 0 16 16"><path fill="currentColor" d="M8 2H5a6 6 0 0 0 0 12h3z" transform="translate(2 0)"/></svg>Shape
-              </div>
-              <div class="el-tile" data-tile="circle">
-                <svg viewBox="0 0 16 16"><circle fill="currentColor" cx="8" cy="8" r="6"/></svg>Circle
-              </div>
-              <div class="el-tile" data-tile="heading">
-                <svg viewBox="0 0 16 16"><path fill="currentColor" d="M2 2h12v3h-2V4H9v8h2v2H5v-2h2V4H4v1H2z"/></svg>Heading
-              </div>
-            </div>
-            <div class="el-canvas">
-              <div class="art">
-                <svg class="art-mark" viewBox="0 0 38 57" aria-hidden="true">
-                  <path class="build-piece" data-tile="shape" fill="#F24E1E" d="M19 0H9.5a9.5 9.5 0 0 0 0 19H19z"/>
-                  <path class="build-piece" data-tile="shape" fill="#FF7262" d="M19 0h9.5a9.5 9.5 0 0 1 0 19H19z"/>
-                  <path class="build-piece" data-tile="shape" fill="#A259FF" d="M19 19H9.5a9.5 9.5 0 0 0 0 19H19z"/>
-                  <circle class="build-piece" data-tile="circle" fill="#1ABCFE" cx="28.5" cy="28.5" r="9.5"/>
-                  <path class="build-piece" data-tile="shape" fill="#0ACF83" d="M9.5 38H19v9.5A9.5 9.5 0 1 1 9.5 38z"/>
-                </svg>
-                <span class="art-word build-piece" data-tile="heading">Figma</span>
-              </div>
-              <div class="el-outline" data-outline aria-hidden="true"><span class="el-handle">✎</span></div>
-              <div class="el-toast" data-toast aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M12 0C5.385 0 0 5.385 0 12s5.385 12 12 12 12-5.385 12-12S18.615 0 12 0zm-1.6 17.2-4.6-4.6 1.7-1.7 2.9 2.9 6.2-6.2 1.7 1.7z"/></svg>
-                Published on WordPress
-              </div>
-            </div>
-          </div>
-          <svg class="el-cursor" data-cursor viewBox="0 0 24 30" aria-hidden="true"><path class="c-arrow" d="M2 2v22.5l5.6-5.3 3.7 8.4 3.8-1.6-3.6-8.2h7.7z" fill="#000" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/><g class="c-hand" transform="translate(-8 0.5)" stroke="#000" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round"><path fill="#fff" d="M8.25 13.5V3.25a1.75 1.75 0 0 1 3.5 0V10.5a1.6 1.6 0 0 1 3.2 0v.8a1.6 1.6 0 0 1 3.2 0v1a1.5 1.5 0 0 1 3 0V19c0 3.6-2.4 6.2-6 6.2h-2.55c-2 0-3.3-.9-4.4-2.4L4.3 17.3c-.7-1-.4-2.2.6-2.6.8-.35 1.6-.1 2.2.6l1.15 1.9z"/><path fill="none" d="M11.75 11.2v3.8M14.95 11.8v3.2M18.15 12.8v2.4"/></g></svg>
-          <div class="el-ghost" data-ghost aria-hidden="true"></div>
-          <figcaption class="sr-only">The same logo rebuilt with Elementor widgets in WordPress, then published.</figcaption>
-        </figure>
-      </div>
-
-      <button type="button" class="lab-replay" data-replay>Replay</button>
-    </section>
-
-    <!-- Work -->
-    <section class="work wrap" id="work" aria-labelledby="work-title">
-      <div class="section-head">
-        <h2 id="work-title">Selected work</h2>
-        <div class="filters" role="group" aria-label="Filter projects">
-          <button type="button" class="chip" data-filter="all" aria-pressed="true">All</button>
-          <button type="button" class="chip" data-filter="website" aria-pressed="false">Websites</button>
-          <button type="button" class="chip" data-filter="plugin" aria-pressed="false">Plugins</button>
-          <button type="button" class="chip" data-filter="case-study" aria-pressed="false">Case studies</button>
-        </div>
-      </div>
-      <div class="grid" data-grid></div>
-      <p class="empty" data-empty hidden>Nothing here yet. Case studies are on the way.</p>
-    </section>
-
-    <!-- Process: a real sequence, so it's numbered -->
-    <section class="process wrap" id="process" aria-labelledby="process-title">
-      <div class="section-head">
-        <h2 id="process-title">How I work</h2>
-      </div>
-      <ol class="steps">
-        <li class="step reveal">
-          <span class="step-no">Step 1</span>
-          <h3>Understand</h3>
-          <p>Talk to the people who'll use it and map what they need to get done.</p>
-        </li>
-        <li class="step reveal">
-          <span class="step-no">Step 2</span>
-          <h3>Design</h3>
-          <p>Wireframes first, then UI in Figma, built from components that map one-to-one to code.</p>
-        </li>
-        <li class="step reveal">
-          <span class="step-no">Step 3</span>
-          <h3>Prototype</h3>
-          <p>Clickable flows we can test and change before anyone writes a line of code.</p>
-        </li>
-        <li class="step reveal">
-          <span class="step-no">Step 4</span>
-          <h3>Build</h3>
-          <p>WordPress, Elementor and custom plugins where they're needed. Multilingual from day one.</p>
-        </li>
-      </ol>
-    </section>
-
-    <!-- About -->
-    <section class="about wrap" id="about" aria-labelledby="about-title">
-      <h2 id="about-title">About</h2>
-      <div class="about-body">
-        <p class="reveal">
-          By combining advanced Product Design (Figma) with Web Development
-          (WordPress/Elementor) and Product Owner expertise, I bridge the gap between
-          user needs, design, and technology. My focus is on leading cross-functional
-          teams, optimizing project priorities, and aligning design strategy with
-          corporate business goals to deliver high-value, high-ROI digital solutions.
-        </p>
-
-        <h3 class="about-sub reveal">Core expertise</h3>
-        <ul class="expertise reveal">
-          <li>
-            <svg class="expertise-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.3" fill="currentColor"/></svg>
-            Product Strategy &amp; Ownership
-          </li>
-          <li>
-            <svg class="expertise-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8 15.2 6 12 9.2 8.8 6zM6 8.8 9.2 12 6 15.2 2.8 12zM18 8.8l3.2 3.2-3.2 3.2-3.2-3.2zM12 14.8l3.2 3.2-3.2 3.2L8.8 18z"/></svg>
-            End-to-End UI/UX &amp; Mobile Design Systems
-          </li>
-          <li>
-            <svg class="expertise-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 4.5l-3 15"/></svg>
-            Front-End Awareness &amp; WordPress/Elementor Customization
-          </li>
-          <li>
-            <svg class="expertise-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 19.5c0-3.3 2.7-5.6 6-5.6s6 2.3 6 5.6"/><circle cx="17" cy="9" r="2.6"/><path d="M16.6 13.9c2.6.2 4.4 2.2 4.4 5"/></svg>
-            Team Leadership &amp; Agile Project Management
-          </li>
-        </ul>
-
-        <a class="plugin-link reveal" href="https://www.figma.com/community/plugin/1645934997243256853/tokenflow" target="_blank" rel="noopener">
-          <svg class="plugin-link-icon" viewBox="0 0 38 57" aria-hidden="true"><path fill="#F24E1E" d="M19 0H9.5a9.5 9.5 0 0 0 0 19H19z"/><path fill="#FF7262" d="M19 0h9.5a9.5 9.5 0 0 1 0 19H19z"/><path fill="#A259FF" d="M19 19H9.5a9.5 9.5 0 0 0 0 19H19z"/><circle fill="#1ABCFE" cx="28.5" cy="28.5" r="9.5"/><path fill="#0ACF83" d="M9.5 38H19v9.5A9.5 9.5 0 1 1 9.5 38z"/></svg>
-          <span>
-            <span class="plugin-link-eyebrow">My Figma plugin</span>
-            <span class="plugin-link-name">TokenFlow</span>
-          </span>
-          <svg class="btn-icon ext-icon plugin-link-arrow" viewBox="0 0 20 20" aria-hidden="true"><path class="ext-frame" d="M8.5 4.5H5.5a1.5 1.5 0 0 0-1.5 1.5v8.5a1.5 1.5 0 0 0 1.5 1.5H14a1.5 1.5 0 0 0 1.5-1.5v-3"/><g class="ext-arrow"><path d="M9 11l7-7"/><path d="M11.5 4H16v4.5"/></g></svg>
-        </a>
-
-        <dl class="tools reveal">
-          <div>
-            <dt>Design</dt>
-            <dd>Figma, FigJam, Photoshop, Illustrator, Blender</dd>
-          </div>
-          <div>
-            <dt>Build</dt>
-            <dd>WordPress, Elementor, WPML, PHP, JavaScript, CSS</dd>
-          </div>
-          <div>
-            <dt>Ship</dt>
-            <dd>Git, GitHub, Cloudflare</dd>
-          </div>
-        </dl>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section class="contact wrap" id="contact" aria-labelledby="contact-title">
-      <h2 id="contact-title" class="contact-title reveal">Have something to design or build?</h2>
-      <a class="mail reveal" href="mailto:gglias.pro@gmail.com">gglias.pro@gmail.com</a>
-      <ul class="links reveal">
-        <li><a href="https://github.com/gglias">GitHub</a></li>
-        <li><a href="https://smartupweb.com">Smartup</a></li>
-      </ul>
-    </section>
-  </main>
-
-  <footer class="foot wrap">
-    <span>Designed in Figma, built by hand, hosted on GitHub Pages.</span>
-    <span>© <span data-year>2026</span> Greg</span>
-  </footer>
-
-  <script src="projects.js?v=20261014f"></script>
-  <script src="main.js?v=20261014f"></script>
-  <script src="lab.js?v=20261014f"></script>
+  <script src="projects.js?v=v3d"></script>
+  <script src="main.js?v=v3d"></script>
+  <script src="lab.js?v=v3d"></script>
 </body>
 </html>
