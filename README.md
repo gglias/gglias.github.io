@@ -14,3 +14,7 @@ Plain HTML, CSS and JavaScript. No build step.
 - **Colours & fonts** → the tokens at the top of `styles.css`.
 
 Push to `main` and GitHub Pages updates the site in about a minute.
+
+**After changing `styles.css` or any `.js` file**, bump the `?v=` number on those links in
+`index.html` and `project.html` (e.g. `?v=20261014a` → `?v=20261014b`). Otherwise browsers can keep
+the old CSS/JS from their cache while loading the new HTML, and the page looks broken for a while.
