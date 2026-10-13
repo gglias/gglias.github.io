@@ -107,7 +107,7 @@ window.PROJECTS = [
     link: "https://github.com/gglias/smartbanner",
     actions: [
       { label: "View on GitHub", href: "https://github.com/gglias/smartbanner", primary: true },
-      { label: "Download .zip", href: "https://github.com/gglias/smartbanner/releases/latest" },
+      { label: "Download .zip", href: "https://github.com/gglias/smartbanner/releases/latest/download/smartbanner.zip" },
     ],
     facts: [
       ["Type", "WordPress plugin"],
@@ -146,7 +146,7 @@ window.PROJECTS = [
     link: "https://github.com/gglias/smartinquiry",
     actions: [
       { label: "View on GitHub", href: "https://github.com/gglias/smartinquiry", primary: true },
-      { label: "Download .zip", href: "https://github.com/gglias/smartinquiry/releases/latest" },
+      { label: "Download .zip", href: "https://github.com/gglias/smartinquiry/releases/latest/download/smartinquiry.zip" },
     ],
     facts: [
       ["Type", "WordPress plugin"],
@@ -185,7 +185,7 @@ window.PROJECTS = [
     link: "https://github.com/gglias/smartconsent",
     actions: [
       { label: "View on GitHub", href: "https://github.com/gglias/smartconsent", primary: true },
-      { label: "Download .zip", href: "https://github.com/gglias/smartconsent/releases/latest" },
+      { label: "Download .zip", href: "https://github.com/gglias/smartconsent/releases/latest/download/smartconsent.zip" },
     ],
     facts: [
       ["Type", "WordPress plugin"],
@@ -224,7 +224,7 @@ window.PROJECTS = [
     link: "https://github.com/gglias/simple-booking",
     actions: [
       { label: "View on GitHub", href: "https://github.com/gglias/simple-booking", primary: true },
-      { label: "Download beta", href: "https://github.com/gglias/simple-booking/releases" },
+      { label: "Download beta (.zip)", href: "https://github.com/gglias/simple-booking/releases/download/v0.1.0/simple-booking.zip" },
     ],
     facts: [
       ["Type", "WordPress plugin"],
