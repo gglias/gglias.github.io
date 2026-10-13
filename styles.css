@@ -1196,6 +1196,33 @@ body { padding-top: var(--header-h); }
   color: #333;
 }
 
+.pj-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  max-width: 62ch;
+  margin: 26px 0 0;
+  padding: 14px 18px;
+  border: 1px solid #f2c66d;
+  border-radius: 10px;
+  background: #fff8e6;
+  color: #5c4100;
+  font: 500 15px/1.5 var(--f-ui);
+}
+.pj-notice::before {
+  content: "!";
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  margin-top: 1px;
+  border-radius: 50%;
+  background: #e5a316;
+  color: #fff;
+  font: 700 13px/1 var(--f-ui);
+}
+
 .pj-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
 
 .pj-btn {

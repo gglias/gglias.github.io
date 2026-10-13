@@ -55,6 +55,7 @@
       '<p class="pj-eyebrow">' + esc(S.LABELS[p.category] || p.category) + " · " + esc(p.year) + "</p>" +
       '<h1 class="pj-title">' + esc(p.title) + "</h1>" +
       '<p class="pj-lede">' + esc(p.summary) + "</p>" +
+      (p.notice ? '<p class="pj-notice" role="note">' + esc(p.notice) + "</p>" : "") +
       (actions.length ? '<div class="pj-actions">' + actions.map(action).join("") + "</div>" : "") +
     "</section>" +
 

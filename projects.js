@@ -14,6 +14,7 @@
  *
  * Project page (project.html?p=<slug>) — shown when a project has `slug` and `sections`:
  * slug     : short id used in the URL
+ * notice   : optional highlighted note under the intro (e.g. beta status)
  * actions  : buttons at the top of the page: [{ label, href, primary }]
  * facts    : the "At a glance" list: [[label, value], ...]
  * sections : [{ h: "Heading", p: "Paragraph" }] or [{ h: "Heading", list: ["...", "..."] }]
@@ -222,9 +223,9 @@ window.PROJECTS = [
     image: "assets/simple-booking-cover.jpg",
     frame: true,
     link: "https://github.com/gglias/simple-booking",
+    notice: "Beta — in development. Simple Booking isn't ready for live sites yet, so there's no download. A stable release will be published once testing is done.",
     actions: [
       { label: "View on GitHub", href: "https://github.com/gglias/simple-booking", primary: true },
-      { label: "Download beta (.zip)", href: "https://github.com/gglias/simple-booking/releases/download/v0.1.0/simple-booking.zip" },
     ],
     facts: [
       ["Type", "WordPress plugin"],
@@ -246,7 +247,7 @@ window.PROJECTS = [
       { h: "Under the hood", p: "Prices are stored as whole cents and every time is stored in UTC, then shown in the salon's own time zone, so nothing drifts with daylight saving." },
       { h: "Built with", list: ["PHP 8 with custom database tables", "The WordPress REST API", "Vanilla JavaScript for the booking widget and calendar"] },
       { h: "Status", p: "Beta. It works end to end, but it's still being refined. Test it on a staging site first." },
-      { h: "Try it", p: "Download the beta from GitHub, then put [simple_booking] on a page." },
+      { h: "Coming soon", p: "A stable release will be published here when testing is done. Until then, the code is on GitHub for anyone who wants to follow along." },
     ],
   },
 
