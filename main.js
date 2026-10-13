@@ -224,6 +224,39 @@
     }, { passive: true });
   }
 
+  // ---- Burger: full-height mobile menu ----
+  var burger = document.querySelector("[data-burger]");
+  var mnav = document.querySelector("[data-mnav]");
+  if (burger && mnav) {
+    var setMenu = function (open, returnFocus) {
+      burger.setAttribute("aria-expanded", String(open));
+      burger.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      mnav.classList.toggle("is-open", open);
+      mnav.setAttribute("aria-hidden", String(!open));
+      document.documentElement.classList.toggle("menu-open", open);
+      document.documentElement.style.overflow = open ? "hidden" : "";
+      if (open) {
+        var first = mnav.querySelector("a");
+        if (first) setTimeout(function () { first.focus({ preventScroll: true }); }, 150);
+      } else if (returnFocus) {
+        burger.focus();
+      }
+    };
+    burger.addEventListener("click", function () {
+      setMenu(burger.getAttribute("aria-expanded") !== "true", true);
+    });
+    mnav.querySelectorAll("a").forEach(function (a) {
+      a.addEventListener("click", function () { setMenu(false, false); });
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && mnav.classList.contains("is-open")) setMenu(false, true);
+    });
+    // Rotating to a wide screen closes it
+    window.matchMedia("(min-width: 681px)").addEventListener("change", function (m) {
+      if (m.matches) setMenu(false, false);
+    });
+  }
+
   // ---- Background dots clear around the mouse (eased so it trails a little) ----
   if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
     var rootStyle = document.documentElement.style;

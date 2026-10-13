@@ -30,7 +30,24 @@
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </nav>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Open menu" data-burger>
+      <span></span><span></span>
+    </button>
   </header>
+
+  <!-- Mobile menu: full height, opened by the burger -->
+  <div class="mnav" id="mnav" aria-hidden="true" data-mnav>
+    <nav class="mnav-links" aria-label="Mobile">
+      <a class="mnav-link" href="#work">Work</a>
+      <a class="mnav-link" href="#process">Process</a>
+      <a class="mnav-link" href="#about">About</a>
+      <a class="mnav-link" href="#contact">Contact</a>
+    </nav>
+    <div class="mnav-foot">
+      <a href="mailto:gglias.pro@gmail.com">gglias.pro@gmail.com</a>
+      <a href="https://github.com/gglias">GitHub</a>
+    </div>
+  </div>
 
   <main id="top">
     <!-- Hero: the headline is "selected" like a frame in Figma -->

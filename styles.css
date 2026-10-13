@@ -1075,6 +1075,94 @@ body { padding-top: var(--header-h); }
 }
 .links a:hover { color: var(--ink); }
 
+/* ================= Burger + full-height mobile menu ================= */
+.burger {
+  display: none;
+  position: relative;
+  width: 44px;
+  height: 44px;
+  margin-right: -10px;
+  padding: 0;
+  border: 0;
+  background: none;
+  z-index: 2;
+}
+.burger span {
+  position: absolute;
+  left: 11px;
+  width: 22px;
+  height: 1.8px;
+  border-radius: 2px;
+  background: var(--ink);
+  transition: top 0.3s var(--ease), transform 0.3s var(--ease);
+}
+.burger span:nth-child(1) { top: 17px; }
+.burger span:nth-child(2) { top: 25px; }
+.burger[aria-expanded="true"] span:nth-child(1) { top: 21px; transform: rotate(45deg); }
+.burger[aria-expanded="true"] span:nth-child(2) { top: 21px; transform: rotate(-45deg); }
+
+/* Sits under the header (z 20), so the logo and the X stay on top */
+.mnav {
+  position: fixed;
+  inset: 0;
+  z-index: 19;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  height: 100dvh;
+  padding: calc(var(--header-h) + 28px) clamp(24px, 4vw, 56px) 36px;
+  background:
+    radial-gradient(circle, var(--dot) 1.1px, transparent 1.4px) 0 0 / 28px 28px,
+    var(--paper);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+}
+.mnav.is-open {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease;
+}
+
+.mnav-links { display: flex; flex-direction: column; }
+.mnav-link {
+  display: block;
+  padding: 10px 0;
+  font: 500 clamp(2.6rem, 12vw, 3.6rem)/1 var(--f-display);
+  letter-spacing: -0.035em;
+  text-decoration: none;
+  border-bottom: 1px solid var(--hair);
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.4s ease, transform 0.5s var(--ease), color 0.2s;
+}
+.mnav-link:hover { color: var(--select); }
+.mnav.is-open .mnav-link { opacity: 1; transform: none; }
+.mnav.is-open .mnav-link:nth-child(1) { transition-delay: 0.06s; }
+.mnav.is-open .mnav-link:nth-child(2) { transition-delay: 0.12s; }
+.mnav.is-open .mnav-link:nth-child(3) { transition-delay: 0.18s; }
+.mnav.is-open .mnav-link:nth-child(4) { transition-delay: 0.24s; }
+
+.mnav-foot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  font: 500 15px/1.4 var(--f-ui);
+}
+.mnav-foot a { color: var(--graphite); text-decoration: none; }
+.mnav-foot a:hover { color: var(--ink); }
+
+/* While the menu is open the header stays tall and clean */
+.menu-open .top { height: var(--header-h); border-bottom-color: transparent; background: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; }
+.menu-open .top .brand { height: 78px; }
+.menu-open .top .brand-full { -webkit-mask-position: 0% 0; mask-position: 0% 0; }
+.menu-open .top .brand-mono { opacity: 0; }
+
+@media (min-width: 681px) {
+  .mnav { display: none; }
+}
 /* ================= Project page ================= */
 .pj-back { padding-top: clamp(28px, 4vw, 48px); }
 .pj-back a {
@@ -1239,9 +1327,9 @@ body { padding-top: var(--header-h); }
 }
 
 @media (max-width: 680px) {
-  /* all four links stay visible on phones, just tighter */
-  .nav { gap: 14px; }
-  .nav a { font-size: 13.5px; padding: 8px 0; }
+  /* phones: the menu moves into the burger */
+  .nav { display: none; }
+  .burger { display: block; }
   .grid { grid-template-columns: 1fr; }
   .card.is-wide .shot { aspect-ratio: 4 / 3; }
   .m-hero-row { grid-template-columns: 1fr; }
@@ -1265,8 +1353,3 @@ body { padding-top: var(--header-h); }
   .card { opacity: 1; transform: none; }
 }
 
-/* Very small phones: keep all four menu links on one line */
-@media (max-width: 360px) {
-  .nav { gap: 10px; }
-  .nav a { font-size: 13px; }
-}
