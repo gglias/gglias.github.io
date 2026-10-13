@@ -1242,8 +1242,8 @@ body { padding-top: var(--header-h); }
 .pj-btn.is-primary { background: var(--ink); color: var(--paper); }
 .pj-btn.is-primary:hover { background: var(--select); border-color: var(--select); transform: translateY(-1px); }
 
-/* Download button icon: arrow drops into the tray on hover */
-.dl-icon {
+/* Button icons (download + external link) share one line style, always on the left */
+.btn-icon {
   width: 18px;
   height: 18px;
   flex: none;
@@ -1255,7 +1255,18 @@ body { padding-top: var(--header-h); }
   stroke-linejoin: round;
 }
 .dl-arrow,
-.dl-tray { transform-box: fill-box; transform-origin: center; }
+.dl-tray,
+.ext-arrow { transform-box: fill-box; transform-origin: center; }
+
+/* External link: the arrow flies out top-right and comes back in from bottom-left */
+.pj-btn.is-external:hover .ext-arrow,
+.pj-btn.is-external:focus-visible .ext-arrow { animation: extOut 0.7s var(--ease); }
+@keyframes extOut {
+  0%   { transform: translate(0, 0);       opacity: 1; }
+  40%  { transform: translate(5px, -5px);  opacity: 0; }
+  41%  { transform: translate(-6px, 6px);  opacity: 0; }
+  100% { transform: translate(0, 0);       opacity: 1; }
+}
 .pj-btn.is-download:hover .dl-arrow,
 .pj-btn.is-download:focus-visible .dl-arrow { animation: dlDrop 0.75s var(--ease); }
 .pj-btn.is-download:hover .dl-tray,

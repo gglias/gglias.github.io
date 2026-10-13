@@ -35,21 +35,28 @@
     return '<section class="pj-sec reveal"><h2>' + esc(s.h) + "</h2>" + body + "</section>";
   }
 
-  // Download icon: an arrow that drops into a tray on hover
+  // Button icons share one line style. Download: arrow drops into a tray.
   var DL_ICON =
-    '<svg class="dl-icon" viewBox="0 0 20 20" aria-hidden="true">' +
+    '<svg class="btn-icon dl-icon" viewBox="0 0 20 20" aria-hidden="true">' +
       '<g class="dl-arrow"><path d="M10 3v9"/><path d="M6 8.5l4 4 4-4"/></g>' +
       '<path class="dl-tray" d="M3.5 13v3h13v-3"/>' +
+    "</svg>";
+
+  // External link: an arrow leaves a corner bracket, up and to the right.
+  var EXT_ICON =
+    '<svg class="btn-icon ext-icon" viewBox="0 0 20 20" aria-hidden="true">' +
+      '<path class="ext-frame" d="M8.5 4.5H5.5a1.5 1.5 0 0 0-1.5 1.5v8.5a1.5 1.5 0 0 0 1.5 1.5H14a1.5 1.5 0 0 0 1.5-1.5v-3"/>' +
+      '<g class="ext-arrow"><path d="M9 11l7-7"/><path d="M11.5 4H16v4.5"/></g>' +
     "</svg>";
 
   function action(a) {
     var external = /^https?:/.test(a.href);
     var isDownload = /\.zip(\?|$)/i.test(a.href);
-    var icon = isDownload ? DL_ICON : external ? ' <span aria-hidden="true">↗</span>' : "";
+    var icon = isDownload ? DL_ICON : external ? EXT_ICON : "";
     return (
-      '<a class="pj-btn' + (a.primary ? " is-primary" : "") + (isDownload ? " is-download" : "") + '" href="' + esc(a.href) + '"' +
+      '<a class="pj-btn' + (a.primary ? " is-primary" : "") + (isDownload ? " is-download" : external ? " is-external" : "") + '" href="' + esc(a.href) + '"' +
         (external && !isDownload ? ' target="_blank" rel="noopener"' : "") + ">" +
-        (isDownload ? icon + esc(a.label) : esc(a.label) + icon) +
+        icon + esc(a.label) +
       "</a>"
     );
   }
