@@ -131,7 +131,7 @@ window.PROJECTS = [
       { h: "Editor-friendly", p: "It stays out of the way inside Elementor, WPBakery and the Customizer, and never shows on the post it's promoting. Admins can preview it with ?smartbanner_preview." },
       { h: "Safe by default", p: "It refuses password-protected or non-public posts, so nothing private can be promoted by mistake." },
       { h: "Built with", list: ["PHP and the WordPress admin", "Vanilla JavaScript and CSS on the front end", "WPML for multilingual content"] },
-      { h: "Outcome", p: "It runs on smartupweb.com and is now free and open source on GitHub." },
+      { h: "Outcome", p: "Free and open source on GitHub, under the GPL." },
     ],
   },
   {
@@ -170,7 +170,7 @@ window.PROJECTS = [
       { h: "Team roles", p: "Two extra roles let colleagues see the requests, and optionally the settings, without access to the rest of WordPress." },
       { h: "Security and privacy", list: ["Optional Cloudflare Turnstile against spam", "Signed tokens and rate limiting on its endpoints", "Works with WordPress's personal data export and erase tools", "Old requests are deleted after the period you set", "Storing IP addresses is optional"] },
       { h: "Built with", list: ["PHP, the WordPress REST API and custom roles", "GD and FreeType for server-side PDFs, with the Inter font", "Vanilla JavaScript for the popup and the PDF fallback", "WPML for English and Greek"] },
-      { h: "Outcome", p: "It's the quote form on smartupweb.com, and is now free and open source on GitHub." },
+      { h: "Outcome", p: "Free and open source on GitHub, under the GPL." },
     ],
   },
   {
@@ -209,7 +209,7 @@ window.PROJECTS = [
       { h: "Anonymous consent log", p: "Every choice is logged for your records with a random ID only. No IP address, no user agent." },
       { h: "A policy that writes itself", list: ["Scans the site for cookies and known services", "A built-in library of common services and their cookies", "One-click cookie policy page in English and Greek", "Shortcodes for the cookie table and a footer \"Cookies\" link"] },
       { h: "Built with", list: ["PHP and the WordPress REST API", "Vanilla JavaScript, loaded early in the page head", "WPML for multilingual banners and policy pages"] },
-      { h: "Outcome", p: "It handles cookies on smartupweb.com, and is now free and open source on GitHub." },
+      { h: "Outcome", p: "Free and open source on GitHub, under the GPL." },
     ],
   },
   {
