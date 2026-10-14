@@ -26,6 +26,37 @@
   }
 
   // Accent: Ember, set on <html data-accent> (the other accents stay in styles.css)
+  // Local preview only: a picker to try other accents. Never shown on github.io.
+  if (!isLive) {
+    var ACCENTS = [
+      ["ember", "Ember", "#ff5b1f"], ["blue", "Blue", "#3d6bff"], ["cyan", "Cyan", "#2ed3f0"], ["green", "Green", "#12c97a"],
+      ["lime", "Lime", "#c8f65a"], ["gold", "Gold", "#ffc21a"], ["pink", "Pink", "#ff4fa3"], ["violet", "Violet", "#a259ff"]
+    ];
+    var pickerEl = document.createElement("div");
+    pickerEl.className = "accent-picker";
+    pickerEl.setAttribute("role", "group");
+    pickerEl.setAttribute("aria-label", "Accent colour (local preview only)");
+    pickerEl.innerHTML = '<span class="accent-picker-label" data-accent-name></span>' +
+      ACCENTS.map(function (a) {
+        return '<button type="button" data-accent-btn="' + a[0] + '" aria-label="' + a[1] + '" title="' + a[1] + " " + a[2] + '" style="--sw:' + a[2] + '"></button>';
+      }).join("");
+    document.body.appendChild(pickerEl);
+    var accentName = pickerEl.querySelector("[data-accent-name]");
+    var setAccent = function (key) {
+      var found = ACCENTS.filter(function (a) { return a[0] === key; })[0] || ACCENTS[0];
+      root.setAttribute("data-accent", found[0]);
+      accentName.textContent = "Accent · " + found[1];
+      pickerEl.querySelectorAll("[data-accent-btn]").forEach(function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-accent-btn") === found[0])); });
+      try { localStorage.setItem("gg-accent", found[0]); } catch (e) { /* private mode */ }
+    };
+    var saved = null;
+    try { saved = localStorage.getItem("gg-accent"); } catch (e) { /* private mode */ }
+    setAccent(new URLSearchParams(location.search).get("accent") || saved || "ember");
+    pickerEl.addEventListener("click", function (e) {
+      var b = e.target.closest("[data-accent-btn]");
+      if (b) setAccent(b.getAttribute("data-accent-btn"));
+    });
+  }
 
   // ---- Local time in Thessaloniki ----
   var clock = document.querySelector("[data-clock] time");
@@ -115,9 +146,14 @@
   var frameLabel = document.querySelector(".frame-label");
 
   if (grid) {
-    var projects = (window.PROJECTS || []).filter(function (p) { return !(isLive && p.draft); });
+    // data-grid="featured" (home): only featured projects, the first one full width.
+    // data-grid="all" (work.html): every project, with the page tabs.
+    var allProjects = (window.PROJECTS || []).filter(function (p) { return !(isLive && p.draft); });
+    var featuredMode = grid.getAttribute("data-grid") === "featured";
+    var projects = featuredMode ? allProjects.filter(function (p) { return p.featured; }) : allProjects;
 
-    var card = function (p) {
+    var card = function (p, i) {
+      var wide = featuredMode ? i === 0 : !!p.wide;
       var page = pageUrl(p);
       var href = page || p.link || "";
       var external = !page && p.link;
@@ -127,7 +163,7 @@
       var tags = (p.tags || []).slice(0, 4).map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("");
 
       return (
-        '<article class="card' + (p.wide ? " is-wide" : "") + '" data-category="' + esc(p.category) + '"' + (p.wide ? ' data-wide="1"' : "") + ">" +
+        '<article class="card' + (wide ? " is-wide" : "") + '" data-category="' + esc(p.category) + '"' + (wide ? ' data-wide="1"' : "") + ">" +
           '<div class="shot"' + (p.bg ? ' style="background:' + esc(p.bg) + '"' : "") + ">" + visual(p) + "</div>" +
           '<span class="shot-size" aria-hidden="true"></span>' +
           (p.draft ? '<span class="draft-badge">Draft · hidden on the live site</span>' : "") +
@@ -164,7 +200,12 @@
 
     var count = document.querySelector("[data-count]");
     var empty = document.querySelector("[data-empty]");
-    var setCount = function (n) { if (count) count.textContent = n + (n === 1 ? " frame" : " frames"); };
+    var setCount = function (n) {
+      if (!count) return;
+      count.textContent = featuredMode
+        ? n + " of " + allProjects.length + " frames"
+        : n + (n === 1 ? " frame" : " frames");
+    };
     setCount(cards.length);
 
     // Frame count on each page tab
@@ -190,6 +231,59 @@
         updateSizes();
       });
     });
+
+    // ---- Home: "More work" list (everything not featured) ----
+    var moreList = document.querySelector("[data-more]");
+    var allCount = document.querySelector("[data-all-count]");
+    if (allCount) allCount.textContent = allProjects.length;
+    if (moreList) {
+      var rest = allProjects.filter(function (p) { return !p.featured; });
+      moreList.innerHTML = rest.map(function (p, i) {
+        var page = pageUrl(p);
+        var href = page || p.link || "";
+        var external = !page && p.link;
+        var meta = esc(LABELS[p.category] || p.category) + " · " + esc(p.year);
+        var inner =
+          '<span class="more-title">' + esc(p.title) + (p.draft ? ' <em class="more-draft">Draft</em>' : "") + "</span>" +
+          '<span class="more-role">' + esc(p.role || "") + "</span>" +
+          '<span class="more-meta">' + meta + "</span>" +
+          '<span class="more-arrow" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6 14 14 6M7.5 6H14v6.5"/></svg></span>';
+        return '<li class="reveal">' + (href
+          ? '<a class="more-row" data-more-i="' + i + '" href="' + esc(href) + '"' + (external ? ' target="_blank" rel="noopener"' : "") + ">" + inner + "</a>"
+          : '<div class="more-row" data-more-i="' + i + '">' + inner + "</div>") + "</li>";
+      }).join("");
+      if (!rest.length) moreList.closest(".more").hidden = true;
+
+      // Cover preview that follows the cursor (mouse only)
+      if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+        var pv = document.createElement("div");
+        pv.className = "more-preview";
+        pv.setAttribute("aria-hidden", "true");
+        document.body.appendChild(pv);
+        var pvX = 0, pvY = 0, pvRaf = 0, shownI = -1;
+        var placePv = function () { pvRaf = 0; pv.style.transform = "translate3d(" + pvX + "px," + pvY + "px,0)"; };
+        moreList.addEventListener("pointermove", function (e) {
+          var pw = pv.offsetWidth || 300, ph = pv.offsetHeight || 188;
+          pvX = e.clientX + 24 + pw > innerWidth - 12 ? e.clientX - 24 - pw : e.clientX + 24;
+          pvY = Math.max(12, Math.min(e.clientY - ph / 2, innerHeight - ph - 12));
+          if (!pvRaf) pvRaf = requestAnimationFrame(placePv);
+        });
+        moreList.addEventListener("pointerover", function (e) {
+          var row = e.target.closest("[data-more-i]");
+          if (!row) return;
+          var i = +row.getAttribute("data-more-i");
+          if (i !== shownI) {
+            var p = rest[i];
+            pv.innerHTML = '<div class="shot"' + (p.bg ? ' style="background:' + esc(p.bg) + '"' : "") + ">" + visual(p) + "</div>";
+            var img = pv.querySelector("img.is-framed");
+            if (img) { if (img.complete && img.naturalWidth) coverGradient(img); else img.addEventListener("load", function () { coverGradient(img); }); }
+            shownI = i;
+          }
+          pv.classList.add("is-on");
+        });
+        moreList.addEventListener("pointerleave", function () { pv.classList.remove("is-on"); });
+      }
+    }
   }
 
   // ---- Live W × H readouts, like Figma's size label ----
@@ -410,6 +504,56 @@
       else navLinks[k].removeAttribute("aria-current");
     });
   }
+  // ---- Placeholder sections never reach the live site ----
+  if (isLive) document.querySelectorAll("[data-draft]").forEach(function (el) { el.remove(); });
+
+  // ---- Kind words: pins switch the comment; it moves on by itself until someone takes over ----
+  var kw = document.querySelector("[data-kw]");
+  if (kw) {
+    var kwPins = document.querySelectorAll("[data-kw-pin]");
+    var kwItems = kw.querySelectorAll("[data-kw-item]");
+    var kwN = kw.querySelector("[data-kw-n]");
+    var kwBar = kw.querySelector("[data-kw-bar]");
+    var kwCur = 0, kwTimer = 0, kwStopped = false, kwVisible = false;
+    var KW_MS = 8000;
+    var kwShow = function (i) {
+      kwCur = (i + kwItems.length) % kwItems.length;
+      kwItems.forEach(function (it, k) { it.classList.toggle("is-on", k === kwCur); });
+      kwPins.forEach(function (p, k) { p.classList.toggle("is-on", k === kwCur); p.setAttribute("aria-selected", k === kwCur ? "true" : "false"); p.tabIndex = k === kwCur ? 0 : -1; });
+      if (kwN) kwN.textContent = kwCur + 1;
+      kwRun();
+    };
+    var kwRun = function () {
+      clearTimeout(kwTimer);
+      kwBar.classList.remove("is-run"); void kwBar.offsetWidth;
+      if (kwStopped || !kwVisible || reduce || kwItems.length < 2) return;
+      kwBar.style.animationDuration = KW_MS + "ms";
+      kwBar.classList.add("is-run");
+      kwTimer = setTimeout(function () { kwShow(kwCur + 1); }, KW_MS);
+    };
+    var kwTake = function (i) { kwStopped = true; kwShow(i); };
+    kwPins.forEach(function (p, k) {
+      p.addEventListener("click", function () { kwTake(k); });
+      p.addEventListener("keydown", function (e) {
+        if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+        e.preventDefault();
+        kwTake(kwCur + (e.key === "ArrowRight" ? 1 : -1));
+        kwPins[kwCur].focus();
+      });
+    });
+    kw.querySelector("[data-kw-prev]").addEventListener("click", function () { kwTake(kwCur - 1); });
+    kw.querySelector("[data-kw-next]").addEventListener("click", function () { kwTake(kwCur + 1); });
+    kwShow(0);
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (en) { kwVisible = en[0].isIntersecting; kwRun(); }, { threshold: 0.5 }).observe(kw);
+    }
+  }
+
+  if (document.body.classList.contains("is-worklist")) {
+    var wl = document.querySelector('[data-nav="work"]');
+    if (wl) { wl.classList.add("is-active"); wl.setAttribute("aria-current", "true"); }
+  }
+
   var progressBar = document.querySelector("[data-progress]");
   if (progressBar) {
     // Scroll progress along the toolbar's bottom edge
@@ -579,7 +723,9 @@
       if (el.closest(".frame .h-br")) return "Resize";
       if (el.closest("[data-sticker]")) return "Drag";
       if (el.closest("[data-copy]")) return "Copy";
+      if (el.closest("[data-accent-btn]")) return "Recolor";
       if (el.closest(".card.is-link")) return "View";
+      if (el.closest(".pj-shot-btn")) return "Zoom";
       var a = el.closest("a, button");
       if (a) {
         var href = a.getAttribute("href") || "";

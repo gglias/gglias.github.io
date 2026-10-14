@@ -9,7 +9,9 @@
  * fit      : "logo" = show the image as a centred logo (no frame, no shadow)
  * bg       : custom CSS background behind the image, e.g. a brand gradient
  * link     : the project's main external link (GitHub, live site, Figma)
- * wide     : true = card spans the full width
+ * wide     : true = card spans the full width (on the All work page)
+ * featured : true = shown as a big card on the home page (first one full width);
+ *            everything else is listed under "More work" and on work.html
  * draft    : true = shown when you preview locally, hidden on github.io
  *
  * Project page (project.html?p=<slug>) — shown when a project has `slug` and `sections`:
@@ -19,10 +21,61 @@
  * actions  : buttons at the top of the page: [{ label, href, primary }]
  * facts    : the "At a glance" list: [[label, value], ...]
  * sections : [{ h: "Heading", p: "Paragraph" }] or [{ h: "Heading", list: ["...", "..."] }]
+ * gallery  : optional image grid on the page: [{ src, label, caption, alt, wide, tall, full, pos }]
+ *            wide = 2 columns, tall = 2 rows, full = the whole row
+ *            pos = which part of the image to keep when it is cropped, e.g. "50% 0%" (top)
+ *            galleryTitle / galleryNote add a heading and a short note above it
  */
 window.PROJECTS = [
   {
+    slug: "animecon",
+    featured: true,
+    title: "AnimeCon: RUN Thessaloniki",
+    category: "website",
+    year: "2023 — now",
+    role: "Website, key visual & print",
+    summary:
+      "The website and the full print identity of one of the biggest anime festivals in Thessaloniki. Since 2023 I design each year's key visual and carry it across the site, social media and everything printed, down to the stairs at the entrance.",
+    tags: ["WordPress", "Elementor", "Key visual", "Print design"],
+    image: "assets/animecon/animecon-logo-white.svg",
+    fit: "logo",
+    // dark, with manga speed lines that fade out around the logo
+    bg: "radial-gradient(34% 44% at 50% 50%, #120406 0%, rgba(18,4,6,0.92) 48%, rgba(18,4,6,0) 80%), repeating-conic-gradient(from 0deg at 50% 50%, rgba(255,59,59,0.17) 0deg 1.1deg, transparent 1.1deg 6.5deg), radial-gradient(120% 100% at 50% 50%, #210709 0%, #070203 78%)",
+    link: "https://anime-con.gr",
+    wide: true,
+    actions: [{ label: "Visit anime-con.gr", href: "https://anime-con.gr", primary: true }],
+    facts: [
+      ["Client", "AnimeCon: RUN Thessaloniki"],
+      ["Role", "Website, logo, key visual & print"],
+      ["Since", "2023, every edition"],
+      ["Platform", "WordPress & Elementor"],
+      ["Venue", "Ioannis Vellidis Congress Centre, Thessaloniki"],
+    ],
+    sections: [
+      { h: "Overview", p: "AnimeCon: RUN Thessaloniki is a festival of anime, manga and Japanese pop culture, held every autumn at the Ioannis Vellidis Congress Centre. It has become one of the biggest anime events in Thessaloniki and an established part of the city's creative community." },
+      { h: "My role", p: "Since 2023 I've been the festival's design partner. I designed the logo, built the website from scratch, create the key visual for each edition and design everything that gets printed, along with the visuals for the festival's social media." },
+      { h: "One identity, every touchpoint", p: "Each edition starts with a new key visual. From there it carries the whole festival: the website, the Facebook posts, the banners outside the venue, the tickets in visitors' hands and the floor plans they find their way with." },
+      { h: "The website", list: ["Tickets", "Guests, from voice actors to mangaka and cosplayers", "Exhibitors, partners and hobbyists", "Floor plans for every zone of the venue", "The stage and conference room schedule, plus an anime marathon", "FAQ and participation forms for exhibitors, artists, cosplayers and hobbyists"] },
+      { h: "Refreshed every year", p: "The site was built from scratch in WordPress with Elementor, and it's refreshed around each new edition: new key visual, new guests, new schedule and floor plans." },
+      { h: "Print", list: ["Roll-up banners", "Flag banners", "Wall and hanging banners", "Tickets and free passes", "Floor plans", "The stair graphic at the entrance"] },
+      { h: "The stairs at the entrance", p: "The most visible piece of print: a large graphic laid across the entrance stairs of the Ioannis Vellidis Congress Centre, with the year's characters and the logo, welcoming every visitor on the way in." },
+      { h: "Built with", list: ["WordPress and Elementor, built from scratch"] },
+      { h: "Outcome", p: "Four editions so far, from 2023 to 2026, with the website, print and social media designed as one system every year." },
+    ],
+    galleryTitle: "At the festival",
+    galleryNote: "Photos from the festival and the website. Faces are blurred for privacy.",
+    gallery: [
+      { src: "assets/animecon/event-stairs.jpg", tall: true, label: "Stair graphic", caption: "The stair graphic and the main banner at the entrance of the Ioannis Vellidis Congress Centre.", alt: "Red entrance stairs printed with the AnimeCon logo and two running characters, the event banner above the doors" },
+      { src: "assets/animecon/site-desktop.jpg", wide: true, pos: "50% 0%", label: "anime-con.gr · Desktop", caption: "The homepage of anime-con.gr.", alt: "The anime-con.gr homepage: Anime, Manga, J-Pop, Culture over the event video, with dates and a ticket button" },
+      { src: "assets/animecon/event-flags.jpg", label: "Flag banners", caption: "Flag banners on the way in.", alt: "AnimeCon flag banners lining the entrance stairs" },
+      { src: "assets/animecon/site-phone.jpg", tall: true, label: "anime-con.gr · Mobile", caption: "The site on a phone.", alt: "The anime-con.gr homepage on a phone" },
+      { src: "assets/animecon/event-banners.jpg", wide: true, label: "Building banner", caption: "The AnimeCon building banner and flag banners above the entrance.", alt: "The AnimeCon RUN Thessaloniki VIII banner on the venue, with flag banners on the right" },
+      { src: "assets/animecon/event-hall.jpg", full: true, pos: "50% 18%", label: "Main hall", caption: "The “R.U.N. is back!” Mangatellers hanging banner above the main hall.", alt: "Hanging banners above a busy exhibition hall, the crowd blurred" },
+    ],
+  },
+  {
     slug: "smartupweb",
+    featured: true,
     title: "smartupweb.com",
     category: "website",
     year: "2026",
@@ -136,6 +189,7 @@ window.PROJECTS = [
   },
   {
     slug: "smartinquiry",
+    featured: true,
     title: "SmartInquiry",
     category: "plugin",
     year: "2026",

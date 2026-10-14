@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en" data-accent="ember">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>All work — Greg Glias</title>
+  <meta name="description" content="Every project by Greg Glias, Senior Product Designer: websites, WordPress plugins, a Figma plugin and case studies." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://gglias.github.io/assets/og.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#09090a" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Geist+Mono:wght@400;500&family=Inter:ital,opsz,wght@0,14..32,400..600;1,14..32,400..600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=v3u" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+</head>
+<body class="is-project is-worklist">
+  <a class="skip" href="#all-work">Skip to content</a>
+
+  <div class="glow" aria-hidden="true"><span class="glow-a"></span><span class="glow-b"></span></div>
+
+
+  <div class="pj-shell">
+    <!-- Top bar: like the top of a Figma file — logo, breadcrumb, way back -->
+    <header class="pj-top">
+      <a class="pj-home" href="./" aria-label="Greg Glias — home"><img src="assets/gg-light.svg" alt="" width="40" height="33" /></a>
+      <nav class="pj-crumbs" aria-label="Breadcrumb"><a href="./#work">Work</a><span aria-hidden="true">/</span><b aria-current="page">All work</b></nav>
+      <a class="pj-back" href="./"><span aria-hidden="true">←</span> Home</a>
+    </header>
+
+    <main id="all-work" class="pj-main">
+      <section class="work all-work" aria-labelledby="work-title">
+        <div class="block-head work-top all-work-top">
+          <span class="eyebrow">Work</span>
+          <h1 id="work-title" class="work-title all-work-title">All work <span class="frame-count" data-count></span></h1>
+          <p class="all-work-lede">Websites, WordPress plugins, a Figma plugin and case studies. Pick a page.</p>
+        </div>
+        <div class="page-tabs" role="group" aria-label="Filter projects">
+          <button type="button" class="page-tab" data-filter="all" aria-pressed="true">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 2v12M11 2v12M2 5h12M2 11h12"/></svg>All <span class="tab-n" data-n="all"></span>
+          </button>
+          <button type="button" class="page-tab" data-filter="website" aria-pressed="false">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 2v12M11 2v12M2 5h12M2 11h12"/></svg>Websites <span class="tab-n" data-n="website"></span>
+          </button>
+          <button type="button" class="page-tab" data-filter="plugin" aria-pressed="false">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 2v12M11 2v12M2 5h12M2 11h12"/></svg>Plugins <span class="tab-n" data-n="plugin"></span>
+          </button>
+          <button type="button" class="page-tab" data-filter="case-study" aria-pressed="false">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 2v12M11 2v12M2 5h12M2 11h12"/></svg>Case studies <span class="tab-n" data-n="case-study"></span>
+          </button>
+        </div>
+        <div class="grid" data-grid="all"></div>
+        <p class="empty" data-empty hidden>Nothing here yet. Case studies are on the way.</p>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <span>Designed in Figma, built by hand, hosted on GitHub Pages.</span>
+      <span>© <span data-year>2026</span> Greg Glias</span>
+    </footer>
+  </div>
+
+  <!-- Figma multiplayer cursor (desktop only, main.js) -->
+  <div class="fig-cursor" aria-hidden="true" data-fig-cursor>
+    <svg viewBox="0 0 24 24"><path d="M4 3.5 19.5 10.3 12.6 12.6 10.3 19.5z"/></svg>
+    <span class="fig-cursor-label" data-fig-label>You</span>
+  </div>
+
+  <!-- Figma UI3-style toolbar: the site navigation -->
+  <nav class="toolbar" aria-label="Sections (keys 1–7)">
+    <a href="./#intro" data-nav="intro" data-key="1"><svg class="tb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11.5 12 5l8 6.5V20h-5v-5H9v5H4z"/></svg><b class="tb-label">Intro</b><span class="tb-tip" aria-hidden="true">Intro <kbd>1</kbd></span></a>
+    <span class="tb-sep" aria-hidden="true"></span>
+    <a href="./#work" data-nav="work" data-key="2"><svg class="tb-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg><b class="tb-label">Work</b><span class="tb-tip" aria-hidden="true">Work <kbd>2</kbd></span></a>
+    <a href="./#experience" data-nav="experience" data-key="3"><svg class="tb-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="7" width="17" height="12.5" rx="2"/><path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7M3.5 12.5h17"/></svg><b class="tb-label">Experience</b><span class="tb-tip" aria-hidden="true">Experience <kbd>3</kbd></span></a>
+    <a href="./#expertise" data-nav="expertise" data-key="4"><svg class="tb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 21 8l-9 5-9-5zM3 12.5l9 5 9-5M3 16.5l9 5 9-5"/></svg><b class="tb-label">Expertise</b><span class="tb-tip" aria-hidden="true">Expertise <kbd>4</kbd></span></a>
+    <a href="./#process" data-nav="process" data-key="5"><svg class="tb-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18h5v-5h5V8h6M17 5l3 3-3 3"/></svg><b class="tb-label">Process</b><span class="tb-tip" aria-hidden="true">Process <kbd>5</kbd></span></a>
+    <a href="./#about" data-nav="about" data-key="6"><svg class="tb-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20c.6-3.8 3.6-6 7.5-6s6.9 2.2 7.5 6"/></svg><b class="tb-label">About</b><span class="tb-tip" aria-hidden="true">About <kbd>6</kbd></span></a>
+    <span class="tb-sep" aria-hidden="true"></span>
+    <a href="./#contact" data-nav="contact" data-key="7"><svg class="tb-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="m4 7 8 6 8-6"/></svg><b class="tb-label">Contact</b><span class="tb-tip" aria-hidden="true">Contact <kbd>7</kbd></span></a>
+    <span class="tb-progress" aria-hidden="true"><i data-progress></i></span>
+  </nav>
+
+  <script src="projects.js?v=v3u"></script>
+  <script src="main.js?v=v3u"></script>
+</body>
+</html>

@@ -29,7 +29,7 @@
         '<span class="eyebrow">404</span>' +
         '<h1 class="pj-title">Project not found</h1>' +
         '<p class="pj-lede">This link doesn\'t match any project. Have a look at the full list instead.</p>' +
-        '<div class="pj-actions"><a class="pj-btn is-primary" href="./#work">See all work</a></div>' +
+        '<div class="pj-actions"><a class="pj-btn is-primary" href="work.html">See all work</a></div>' +
       "</section>";
     document.title = "Project not found — Greg Glias";
     return;
@@ -39,7 +39,7 @@
   var PLURAL = { plugin: "Plugins", website: "Websites", "case-study": "Case studies" };
   if (crumbs) {
     crumbs.innerHTML =
-      '<a href="./#work">Work</a><span aria-hidden="true">/</span>' +
+      '<a href="work.html">Work</a><span aria-hidden="true">/</span>' +
       '<span>' + esc(PLURAL[p.category] || categoryName) + '</span><span aria-hidden="true">/</span>' +
       '<b aria-current="page">' + esc(p.title) + "</b>";
   }
@@ -84,6 +84,28 @@
       "</figure>"
     : "";
 
+  // Gallery: photos/print as Figma frames; click to open large
+  var gallery = (p.gallery || []).filter(function (g) { return g && g.src; });
+  var galleryHtml = gallery.length
+    ? '<section class="pj-gallery" aria-labelledby="gallery-title">' +
+        '<div class="pj-gallery-head reveal"><span class="eyebrow">Gallery</span>' +
+          '<h2 id="gallery-title" class="pj-gallery-title">' + esc(p.galleryTitle || "Gallery") + "</h2>" +
+          (p.galleryNote ? '<p class="pj-gallery-note">' + esc(p.galleryNote) + "</p>" : "") +
+        "</div>" +
+        '<div class="pj-gallery-grid">' +
+          gallery.map(function (g, i) {
+            return '<figure class="pj-shot reveal' + (g.wide ? " is-wide" : "") + (g.tall ? " is-tall" : "") + (g.full ? " is-full" : "") + '">' +
+              '<button type="button" class="pj-shot-btn" data-shot="' + i + '" aria-label="Open image: ' + esc(g.caption || g.alt || "") + '">' +
+                '<span class="pj-shot-label" aria-hidden="true">' + esc(g.label || "Frame " + (i + 1)) + "</span>" +
+                '<img src="' + esc(g.src) + '" alt="' + esc(g.alt || g.caption || "") + '" loading="lazy"' + (g.pos ? ' style="object-position:' + esc(g.pos) + '"' : "") + ' />' +
+              "</button>" +
+              (g.caption ? "<figcaption>" + esc(g.caption) + "</figcaption>" : "") +
+            "</figure>";
+          }).join("") +
+        "</div>" +
+      "</section>"
+    : "";
+
   root.innerHTML =
     '<section class="pj-hero">' +
       '<span class="eyebrow">' + esc(categoryName) + " · " + esc(p.year) + "</span>" +
@@ -109,6 +131,8 @@
       '<div class="pj-sections">' + (p.sections || []).map(section).join("") + "</div>" +
     "</div>" +
 
+    galleryHtml +
+
     (next
       ? '<a class="pj-next reveal" href="' + esc(S.pageUrl(next)) + '">' +
           '<span class="eyebrow">Next project</span>' +
@@ -116,6 +140,40 @@
           '<span class="arrow-tile" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M6 14 14 6M7.5 6H14v6.5"/></svg></span>' +
         "</a>"
       : "");
+
+  // Lightbox for the gallery (native <dialog>: Esc closes, focus returns)
+  if (gallery.length && window.HTMLDialogElement) {
+    var box = document.createElement("dialog");
+    box.className = "pj-lightbox";
+    box.setAttribute("aria-label", "Image viewer");
+    box.innerHTML =
+      '<figure><img alt="" /><figcaption></figcaption></figure>' +
+      '<button type="button" class="pj-lb-close" aria-label="Close">×</button>' +
+      (gallery.length > 1 ? '<button type="button" class="pj-lb-prev" aria-label="Previous image">←</button><button type="button" class="pj-lb-next" aria-label="Next image">→</button>' : "");
+    document.body.appendChild(box);
+    var lbImg = box.querySelector("img"), lbCap = box.querySelector("figcaption"), cur = 0;
+    var show = function (i) {
+      cur = (i + gallery.length) % gallery.length;
+      lbImg.src = gallery[cur].src;
+      lbImg.alt = gallery[cur].alt || gallery[cur].caption || "";
+      lbCap.textContent = gallery[cur].caption || "";
+    };
+    root.addEventListener("click", function (e) {
+      var b = e.target.closest("[data-shot]");
+      if (!b) return;
+      show(+b.getAttribute("data-shot"));
+      box.showModal();
+    });
+    box.addEventListener("click", function (e) {
+      if (e.target.closest(".pj-lb-prev")) return show(cur - 1);
+      if (e.target.closest(".pj-lb-next")) return show(cur + 1);
+      if (e.target === box || e.target.closest(".pj-lb-close")) box.close();
+    });
+    box.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowLeft") show(cur - 1);
+      if (e.key === "ArrowRight") show(cur + 1);
+    });
+  }
 
   // Title and description for this project
   document.title = p.title + " — Greg Glias";

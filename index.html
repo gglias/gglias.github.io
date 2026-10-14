@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Geist+Mono:wght@400;500&family=Inter:ital,opsz,wght@0,14..32,400..600;1,14..32,400..600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=v3g" />
+  <link rel="stylesheet" href="styles.css?v=v3u" />
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
 </head>
 <body>
@@ -301,27 +301,72 @@
 
       <!-- Work -->
       <section class="block work" id="work" data-section aria-labelledby="work-title">
-        <!-- Heading like a Figma page: name + frame count; the filters are the page tabs -->
+        <!-- Heading like a Figma page: name + frame count -->
         <div class="block-head work-top">
           <span class="eyebrow">Work</span>
           <h2 id="work-title" class="h2 work-title">Selected work <span class="frame-count" data-count></span></h2>
         </div>
-        <div class="page-tabs" role="group" aria-label="Filter projects">
-          <button type="button" class="page-tab" data-filter="all" aria-pressed="true">
-            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 2v12M11 2v12M2 5h12M2 11h12"/></svg>All <span class="tab-n" data-n="all"></span>
-          </button>
-          <button type="button" class="page-tab" data-filter="website" aria-pressed="false">
-            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 2v12M11 2v12M2 5h12M2 11h12"/></svg>Websites <span class="tab-n" data-n="website"></span>
-          </button>
-          <button type="button" class="page-tab" data-filter="plugin" aria-pressed="false">
-            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 2v12M11 2v12M2 5h12M2 11h12"/></svg>Plugins <span class="tab-n" data-n="plugin"></span>
-          </button>
-          <button type="button" class="page-tab" data-filter="case-study" aria-pressed="false">
-            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 2v12M11 2v12M2 5h12M2 11h12"/></svg>Case studies <span class="tab-n" data-n="case-study"></span>
-          </button>
+        <!-- Featured projects (featured: true in projects.js) -->
+        <div class="grid" data-grid="featured"></div>
+        <!-- Everything else as a compact list; a cover preview follows the cursor -->
+        <div class="more">
+          <span class="eyebrow">More work</span>
+          <ol class="more-list" data-more></ol>
+          <a class="more-all" href="work.html">View all <span data-all-count></span> projects <span aria-hidden="true">→</span></a>
         </div>
-        <div class="grid" data-grid></div>
-        <p class="empty" data-empty hidden>Nothing here yet. Case studies are on the way.</p>
+      </section>
+
+      <!-- Kind words: comment pins on the left, one Figma comment popover on the right. Real quotes only. -->
+      <section class="block kind" id="kind-words" aria-labelledby="kind-title">
+        <div class="kw">
+          <div class="kw-side">
+            <div class="block-head kw-headline">
+              <span class="eyebrow">Kind words</span>
+              <h2 id="kind-title" class="h2 kw-title">Left in the comments.<br /><span class="dim">From the people I ship with.</span></h2>
+            </div>
+            <div class="kw-pins" role="tablist" aria-label="Comments">
+            <button type="button" class="kw-pin is-on" role="tab" id="kw-tab-1" aria-controls="kw-1" aria-selected="true" style="--av:#a259ff" data-kw-pin><span>SK</span><b class="kw-pin-name">Spyridon Kousis</b></button>
+            <button type="button" class="kw-pin" role="tab" id="kw-tab-2" aria-controls="kw-2" aria-selected="false" style="--av:#12c97a" data-kw-pin><span>VD</span><b class="kw-pin-name">Vasilis Delta</b></button>
+            <button type="button" class="kw-pin" role="tab" id="kw-tab-3" aria-controls="kw-3" aria-selected="false" style="--av:#2ed3f0" data-kw-pin><span>MT</span><b class="kw-pin-name">Mangatellers</b></button>
+            </div>
+          </div>
+          <div class="kw-card" data-kw>
+            <div class="kw-bar">
+              <span class="kw-label"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.5c3.3 0 5.5 2.2 5.5 5s-2.2 5-5.5 5H2.5V8C2.5 5 4.7 2.5 8 2.5Z"/></svg>Comment</span>
+              <span class="kw-count" aria-live="polite"><b data-kw-n>1</b> of 3</span>
+              <button type="button" class="kw-nav" data-kw-prev aria-label="Previous comment"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg></button>
+              <button type="button" class="kw-nav" data-kw-next aria-label="Next comment"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m6 3.5 4.5 4.5L6 12.5"/></svg></button>
+              <span class="kw-ok" title="Resolved"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 8.5 3 3 6-7"/></svg></span>
+            </div>
+            <ol class="kw-list">
+            <li class="kw-item is-on" id="kw-1" role="tabpanel" aria-labelledby="kw-tab-1" data-kw-item>
+              <div class="kw-who">
+                <span class="kw-av" style="--av:#a259ff" aria-hidden="true">SK</span>
+                <span class="kw-name"><b>Spyridon Kousis</b><span>My manager at Freights Exchange</span></span>
+                <span class="kw-tag">Teamwork</span>
+              </div>
+              <blockquote class="kw-text"><p>“Grigoris is an outstanding collaborator. He stands out for his openness to new ideas, his reliability, and the strong sense of responsibility he brings to every task. He is consistently willing to contribute more than what is initially asked of him, and his positive attitude meaningfully supports the smooth progress of any collaboration. He is considered a valuable asset to any company.”</p></blockquote>
+            </li>
+            <li class="kw-item" id="kw-2" role="tabpanel" aria-labelledby="kw-tab-2" data-kw-item>
+              <div class="kw-who">
+                <span class="kw-av" style="--av:#12c97a" aria-hidden="true">VD</span>
+                <span class="kw-name"><b>Vasilis Delta</b><span>Restaurant owner</span></span>
+                <span class="kw-tag">Client</span>
+              </div>
+              <blockquote class="kw-text"><p>“Grigoris does an amazing job. He is always willing to help and offers the most advantageous, modern solutions for your business at the friendliest prices. He took over the menu of my restaurant, and the consistency of his work left me impressed. I highly recommend him.”</p></blockquote>
+            </li>
+            <li class="kw-item" id="kw-3" role="tabpanel" aria-labelledby="kw-tab-3" data-kw-item>
+              <div class="kw-who">
+                <span class="kw-av" style="--av:#2ed3f0" aria-hidden="true">MT</span>
+                <span class="kw-name"><b>Mangatellers</b><span>Long-term partner</span></span>
+                <span class="kw-tag">Client</span>
+              </div>
+              <blockquote class="kw-text"><p>“Grigoris delivers high-quality work and keeps a friendly, trustworthy relationship with everyone he works with.”</p></blockquote>
+            </li>
+            </ol>
+            <span class="kw-progress" aria-hidden="true"><i data-kw-bar></i></span>
+          </div>
+        </div>
       </section>
 
       <!-- Experience (from the CV). Each row opens to show the highlights. -->
@@ -563,8 +608,8 @@
     <span class="tb-progress" aria-hidden="true"><i data-progress></i></span>
   </nav>
 
-  <script src="projects.js?v=v3g"></script>
-  <script src="main.js?v=v3g"></script>
-  <script src="lab.js?v=v3g"></script>
+  <script src="projects.js?v=v3u"></script>
+  <script src="main.js?v=v3u"></script>
+  <script src="lab.js?v=v3u"></script>
 </body>
 </html>
