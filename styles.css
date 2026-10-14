@@ -492,6 +492,16 @@ a, button, [role="button"], label, summary, select { cursor: var(--cursor-hand);
 }
 .socials a:hover { color: var(--text); background: rgb(255 255 255 / 0.1); }
 .socials svg { width: 15px; height: 15px; }
+/* Line icons (Figma, Toolkit): drawn as outlines, a touch bigger to match the filled ones */
+.socials svg.is-line {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
 
 /* Primary action, Figma button shape (not a pill) */
 .profile-cta {
