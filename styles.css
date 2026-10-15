@@ -1477,16 +1477,16 @@ html.is-resizing-frame * { cursor: var(--cursor-hand) !important; }
   transition: background 0.25s, border-color 0.25s, color 0.25s;
 }
 .ftools-all:hover { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
-.ftools-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gap); margin: 22px 0 0; padding: 0; list-style: none; }
+.ftools-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 20px 0 0; padding: 0; list-style: none; }
 .ftool {
   position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   grid-template-rows: auto 1fr;
-  gap: 16px 12px;
+  gap: 12px 8px;
   height: 100%;
-  padding: 12px 12px 16px;
-  border-radius: var(--radius);
+  padding: 8px 8px 12px;
+  border-radius: 18px;
   border: 1px solid var(--line);
   background: var(--card-2);
   text-decoration: none;
@@ -1501,41 +1501,48 @@ html.is-resizing-frame * { cursor: var(--cursor-hand) !important; }
   display: grid;
   place-items: center;
   align-content: center;
-  gap: 14px;
-  aspect-ratio: 16 / 10;
-  border-radius: 14px;
+  gap: 8px;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
   overflow: hidden;
-  background: radial-gradient(circle, rgb(255 255 255 / 0.07) 1px, transparent 1.3px) 0 0 / 16px 16px, #0e0e10;
+  background: radial-gradient(circle, rgb(255 255 255 / 0.07) 1px, transparent 1.3px) 0 0 / 14px 14px, #0e0e10;
 }
-.ftool-body { display: grid; gap: 6px; padding-left: 6px; align-self: center; }
-.ftool-body b { font: 400 1.25rem/1.15 var(--f-display); letter-spacing: -0.03em; }
-.ftool-body small { font-size: 0.85rem; line-height: 1.45; color: var(--muted); }
-.ftool .arrow-tile { align-self: center; width: 44px; height: 44px; }
+.ftool-body { display: grid; gap: 4px; padding-left: 4px; align-self: start; }
+.ftool-body b { font: 400 1.05rem/1.15 var(--f-display); letter-spacing: -0.025em; }
+.ftool-body small { font-size: 0.78rem; line-height: 1.4; color: var(--muted); }
+.ftool .arrow-tile { align-self: start; width: 32px; height: 32px; border-radius: 10px; }
+.ftool .arrow-tile svg { width: 14px; height: 14px; }
 
-/* The three little previews */
-.ft-qr { width: 38%; padding: 9px; border-radius: 12px; background: #fff; fill: #141414; transform: rotate(-4deg); transition: transform 0.5s var(--ease); }
-.ft-fav { display: grid; place-items: center; width: 22%; aspect-ratio: 1; border-radius: 22%; background: var(--accent); transform: rotate(-4deg); transition: transform 0.5s var(--ease); }
+/* The little previews */
+.ft-qr { width: 30%; padding: 6px; border-radius: 9px; background: #fff; fill: #141414; transform: none; transition: transform 0.5s var(--ease); }
+.ft-fav { display: grid; place-items: center; width: 18%; aspect-ratio: 1; border-radius: 22%; background: var(--accent); transform: none; transition: transform 0.5s var(--ease); }
 .ft-fav img { width: 64%; height: auto; }
-.ft-tab { display: flex; align-items: center; gap: 7px; width: 62%; padding: 7px 9px; border-radius: 8px 8px 0 0; background: #fff; color: #1f1f1f; font: 400 11px/1 var(--f-body); }
-.ft-tab i { display: grid; place-items: center; width: 14px; height: 14px; border-radius: 4px; background: var(--accent); }
-.ft-tab i img { width: 10px; height: auto; }
+.ft-tab { display: flex; align-items: center; gap: 5px; width: 66%; padding: 5px 7px; border-radius: 6px 6px 0 0; background: #fff; color: #1f1f1f; font: 400 9px/1 var(--f-body); }
+.ft-tab i { display: grid; place-items: center; width: 11px; height: 11px; border-radius: 3px; background: var(--accent); }
+.ft-tab i img { width: 8px; height: auto; }
 .ft-tab span { margin-left: auto; color: #5f6368; }
-.ft-pal { display: grid; grid-template-columns: repeat(8, 1fr); width: 74%; aspect-ratio: 8 / 2.2; border-radius: 10px; overflow: hidden; transform: rotate(-3deg); transition: transform 0.5s var(--ease); }
+.ft-pal { display: grid; grid-template-columns: repeat(8, 1fr); width: 72%; aspect-ratio: 8 / 2; border-radius: 8px; overflow: hidden; transform: none; transition: transform 0.5s var(--ease); }
 .ft-pal i { background: var(--c); }
-.ft-aa { display: inline-flex; align-items: baseline; gap: 6px; padding: 6px 10px; border-radius: 8px; background: #4f46e5; color: #fff; font: 600 15px/1 var(--f-body); }
-.ft-aa small { font: 400 10.5px/1 var(--f-mono); opacity: 0.85; }
-.ftool:hover .ft-qr, .ftool:hover .ft-fav, .ftool:hover .ft-pal { transform: rotate(0deg) scale(1.04); }
+.ft-aa { display: inline-flex; align-items: baseline; gap: 5px; padding: 4px 8px; border-radius: 6px; background: #4f46e5; color: #fff; font: 600 12px/1 var(--f-body); }
+.ft-aa small { font: 400 9px/1 var(--f-mono); opacity: 0.85; }
+.ft-dnd { display: grid; align-content: space-between; width: 70%; aspect-ratio: 16 / 9; padding: 6% 8%; border: 3px solid #1d1d20; border-radius: 6px; background: #ff5b1f; color: #fff; transform: none; transition: transform 0.5s var(--ease); }
+.ft-dnd b { font: 500 6.5px/1 var(--f-mono); letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.85; }
+.ft-dnd strong { font: 700 14px/1 var(--f-display); letter-spacing: -0.04em; }
+.ft-dnd small { font: 400 6.5px/1 var(--f-mono); opacity: 0.85; justify-self: end; }
+.ftool:hover .ft-qr, .ftool:hover .ft-fav, .ftool:hover .ft-pal, .ftool:hover .ft-dnd { transform: rotate(0deg) scale(1.05); }
 
+/* Narrower: two by two, then a compact list */
 @container (max-width: 760px) {
-  .ftools-grid { grid-template-columns: minmax(0, 1fr); }
-  .ftool { grid-template-columns: 132px minmax(0, 1fr) auto; grid-template-rows: auto; align-items: center; padding: 10px 14px 10px 10px; }
-  .ftool-art { grid-column: auto; aspect-ratio: 4 / 3; gap: 8px; }
-  .ft-tab { width: 86%; font-size: 9px; padding: 5px 6px; }
+  .ftools-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
-@container (max-width: 420px) {
-  .ftool { grid-template-columns: 96px minmax(0, 1fr); }
-  .ftool .arrow-tile { display: none; }
-  .ftool-body small { font-size: 0.8rem; }
+@container (max-width: 460px) {
+  .ftools-grid { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .ftool { grid-template-columns: 96px minmax(0, 1fr) auto; grid-template-rows: auto; align-items: center; padding: 8px 10px 8px 8px; }
+  .ftool-art { grid-column: auto; aspect-ratio: 4 / 3; }
+  .ftool-body, .ftool .arrow-tile { align-self: center; }
+  .ft-dnd { align-content: center; }
+  .ft-dnd b, .ft-dnd small { display: none; }
+  .ft-dnd strong { font-size: 11px; }
 }
 
 /* ---- Home: "More work" list ---- */
