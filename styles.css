@@ -2065,7 +2065,9 @@ button.xp-row:hover .xp-role { color: var(--accent); }
 }
 .mail:hover { color: var(--accent); border-color: var(--accent); }
 .links { display: flex; gap: 20px; margin: 0; padding: 0; list-style: none; }
-.links a { color: var(--muted); text-decoration: none; }
+.links a { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); text-decoration: none; }
+.links svg { flex: none; width: 15px; height: 15px; }
+.links svg.is-line { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .links a:hover { color: var(--text); }
 
 .foot {
