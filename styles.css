@@ -2237,11 +2237,12 @@ html.has-fig-cursor .fig-cursor.is-visible { opacity: 1; }
   border-radius: 2px;
   overflow: hidden;
   pointer-events: none;
+  background: rgb(255 255 255 / 0.06);   /* the track: shows how far there is to go */
 }
 .tb-progress i {
   display: block;
   height: 100%;
-  background: var(--accent);
+  background: rgb(255 255 255 / 0.32);   /* quiet neutral, no accent: visible on the dark toolbar */
   transform: scaleX(0);
   transform-origin: left;
   transition: background 0.4s;
